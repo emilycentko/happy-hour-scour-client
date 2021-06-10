@@ -2,7 +2,6 @@ import React from "react"
 import { Link } from "react-router-dom"
 import "./Auth.css"
 
-
 export const Login = props => {
     const email = React.createRef()
     const password = React.createRef()
@@ -42,7 +41,7 @@ export const Login = props => {
             </dialog>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Level Up</h1>
+                    <h1>Happy Hour Scour</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>
