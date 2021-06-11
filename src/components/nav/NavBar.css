@@ -1,0 +1,55 @@
+.navbar {
+    display: flex;
+    /* flex-wrap: nowrap; */
+    /* justify-content: left; */
+    background-color: navy;
+    margin: 0;
+    height: 200px;
+}
+
+.navbar__item {
+    display: flex;
+    flex-basis: 15%;
+    justify-content: space-evenly;
+    flex-basis: flex-end;
+    list-style-type: none;
+    text-align: center;
+}
+
+.navbar__item:hover {
+    font-weight: bold;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+.button.nav-link.fakeLink {
+    text-decoration: none;
+    color: black;
+}   
+
+.navbar__logo {
+    max-height: 10rem;
+    margin-top: 70px;
+}
+
+.logo {
+    display: flex;
+}
+
+.navbar__link {
+    font-family: 'Helvetica Neue';
+    flex-basis: 15%;
+    border-bottom: 2px solid white;
+}
+
+hr {
+    width: 80%;
+}
+
+.navbar li {
+    align-self: flex-end;
+    margin-bottom: 50px;
+}
