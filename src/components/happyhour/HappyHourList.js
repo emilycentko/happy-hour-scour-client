@@ -21,7 +21,7 @@ export const HappyHourList = (props) => {
                         return <section key={`happyhour--${happyhour.id}`} className="happyhour">
                             
                         <div className="happyhour__img">{happyhour.image}</div>
-                        {/* <h3 className="happyhour__business">{happyhour?.business_id.name}</h3> */}
+                        <h3 className="happyhour__business">{happyhour.business.name}</h3>
                         <div className="happyhour__description">{happyhour.description}</div>
 
                         </section>
