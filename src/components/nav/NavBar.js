@@ -14,7 +14,7 @@ export const NavBar = (props) => {
                         <img className="navbar__logo" src={Logo} />
                     </li>
                     <li className="navbar__item">
-                        <Link className="navbar__link" to="/">Home</Link>
+                        <Link className="navbar__link" to="/">Today</Link>
                     </li>
                     <li className="navbar__item">
                         <Link className="navbar__link" to="/favorites">Favorites</Link>
@@ -45,7 +45,7 @@ export const NavBar = (props) => {
                         }
                     </div>
                 </ul>
-                <hr></hr>
+                
             </div>
         </>
     )

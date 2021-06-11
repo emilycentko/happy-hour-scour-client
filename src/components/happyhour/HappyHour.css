@@ -1,0 +1,23 @@
+.happy__hours_title {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.all__happy_hours {
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly; */
+}
+
+.happyhour {
+    /* flex-basis: 20%; */
+    margin: 1em;
+    padding: 1em;
+    position:relative;
+}
+
+.happyhour__heart {
+    position:absolute;
+    bottom:12px;
+    right:20px;
+}
