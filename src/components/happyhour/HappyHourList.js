@@ -1,33 +1,59 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { HappyHourContext } from "./HappyHourProvider.js"
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
+import Heart from "react-heart"
+import "./HappyHour.css"
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
+import CardDeck from 'react-bootstrap/CardDeck'
+import {Image} from 'cloudinary-react';
 
 export const HappyHourList = (props) => {
 
     const {happyhours, getHappyHours} = useContext(HappyHourContext)
+    const [active, setActive] = useState(false)
 
     const history = useHistory()
 
+    const day = useLocation()
+    const [_, weekday] = day.search.split("=")
+    console.log(weekday)
+
     useEffect(() => {
-        getHappyHours()
-    }, [])
+        getHappyHours(weekday)
+        
+    }, [weekday])
+
 
     return (
         <>
-            <h1>Happy Hours</h1>
-            <article className="all__happy_hours">
+            <h1 className="happy__hours_title">{weekday ? `${weekday}'s Happy Hours` : "Today's Happy Hours"}</h1>
+            <div className="all__happy_hours">
+                <CardDeck>
                 {
                     happyhours.map(happyhour => {
                         return <section key={`happyhour--${happyhour.id}`} className="happyhour">
-                            
-                        <div className="happyhour__img">{happyhour.image}</div>
-                        <h3 className="happyhour__business">{happyhour.business.name}</h3>
-                        <div className="happyhour__description">{happyhour.description}</div>
-
-                        </section>
+                        
+                        <Card style={{ width: '18rem' }}>
+                            <Image publicId={happyhour.image} cloud_name="dt8cdbrjs" width="50" crop="scale" />
+                            <Card.Body>
+                                <Card.Title className="happyhour__business">{happyhour.business.name}</Card.Title>
+                                <Card.Text>
+                                    <div className="happyhour__description">{happyhour.description}</div>
+                                </Card.Text>
+                           </Card.Body>
+                            <Card.Footer>
+                                <Button variant="primary">Reviews</Button>
+                           <div className="happyhour__heart" style={{ width: "2rem" }}>
+			                    <Heart isActive={active} onClick={() => setActive(!active)}/>
+		                    </div>
+                            </Card.Footer>
+                        </Card>
+                    </section>
                     })
                 }
-            </article>
+                </CardDeck>
+            </div>
         </>
     )
 }

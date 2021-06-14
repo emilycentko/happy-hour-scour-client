@@ -7,8 +7,14 @@ export const HappyHourProvider = (props) => {
     const [happyhours, setHappyHours] = useState([])
     const [searchTerms, setTerms] = useState("")
 
-    const getHappyHours = () => {
-        return fetch("http://localhost:8000/happyhours", {
+    const getHappyHours = (weekday=null) => {
+        let fetchURL = ""
+        if (weekday != null) {
+            fetchURL = `http://localhost:8000/happyhours?day=${weekday}`
+        } else {
+            fetchURL = `http://localhost:8000/happyhours`
+        }
+        return fetch(fetchURL, {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("hhs_token")}`
             }
