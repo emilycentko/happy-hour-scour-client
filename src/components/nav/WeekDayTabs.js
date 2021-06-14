@@ -8,27 +8,27 @@ export const WeekDayTabs = () => {
     return (
 
         <div>
-            <Nav className="weekday__tabs" justify variant="tabs" defaultActiveKey="/">
+            <Nav className="weekday__tabs" justify variant="tabs" defaultActiveKey="/happyhours">
                 <Nav.Item>
-                    <Nav.Link href="/monday">Monday</Nav.Link>
+                    <Nav.Link href="/happyhours?day=Monday">Monday</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/tuesday">Tuesday</Nav.Link>
+                    <Nav.Link href="/happyhours?day=Tuesday">Tuesday</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/wednesday">Wednesday</Nav.Link>
+                    <Nav.Link href="/happyhours?day=Wednesday">Wednesday</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/thursday">Thursday</Nav.Link>
+                    <Nav.Link href="/happyhours?day=Thursday">Thursday</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/friday">Friday</Nav.Link>
+                    <Nav.Link href="/happyhours?day=Friday">Friday</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/saturday">Saturday</Nav.Link>
+                    <Nav.Link href="/happyhours?day=Saturday">Saturday</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/sunday">Sunday</Nav.Link>
+                    <Nav.Link href="/happyhours?day=Sunday">Sunday</Nav.Link>
                 </Nav.Item>
                 
             </Nav> 

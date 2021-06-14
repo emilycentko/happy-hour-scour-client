@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { HappyHourContext } from "./HappyHourProvider.js"
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import Heart from "react-heart"
 import "./HappyHour.css"
 import Card from 'react-bootstrap/Card'
@@ -15,13 +15,19 @@ export const HappyHourList = (props) => {
 
     const history = useHistory()
 
+    const day = useLocation()
+    const [_, weekday] = day.search.split("=")
+    console.log(weekday)
+
     useEffect(() => {
-        getHappyHours()
-    }, [])
+        getHappyHours(weekday)
+        
+    }, [weekday])
+
 
     return (
         <>
-            <h1 className="happy__hours_title">Today's Happy Hours</h1>
+            <h1 className="happy__hours_title">{weekday ? `${weekday}'s Happy Hours` : "Today's Happy Hours"}</h1>
             <div className="all__happy_hours">
                 <CardDeck>
                 {

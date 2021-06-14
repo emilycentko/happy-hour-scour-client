@@ -12,9 +12,10 @@ export const ApplicationViews = () => {
         }}>
             <WeekDayTabs />
             <HappyHourProvider>
-                <Route exact path="/">
+                <Route exact path="/happyhours">
                     <HappyHourList />
                 </Route>
+                
             </HappyHourProvider>
         </main>
     </>

@@ -14,7 +14,7 @@ export const NavBar = (props) => {
                         <img className="navbar__logo" src={Logo} />
                     </li>
                     <li className="navbar__item">
-                        <Link className="navbar__link" to="/">Today</Link>
+                        <Link className="navbar__link" to="/happyhours">Today</Link>
                     </li>
                     <li className="navbar__item">
                         <Link className="navbar__link" to="/favorites">Favorites</Link>
@@ -30,7 +30,7 @@ export const NavBar = (props) => {
                                     <button className="nav-link fakeLink navbar__item"
                                         onClick={() => {
                                             localStorage.removeItem("hhs_token")
-                                            props.history.push({ pathname: "/" })
+                                            props.history.push({ pathname: "/happyhours" })
                                         }}
                                     >Logout</button>
                                 </li> :
