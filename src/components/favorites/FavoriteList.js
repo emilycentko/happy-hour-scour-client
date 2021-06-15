@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { FavoriteContext } from "./FavoriteProvider.js"
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import Heart from "react-heart"
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
@@ -13,14 +13,17 @@ export const FavoriteList = (props) => {
 
     const history = useHistory()
 
+    const day = useLocation()
+    const [_, weekday] = day.search.split("=")
+
     useEffect(() => {
-        getFavorites()
+        getFavorites(weekday)
         
-    }, [])
+    }, [weekday])
 
     return (
         <>
-            <h1 className="happy__hours_title">Favorite Happy Hours</h1>
+            <h1 className="happy__hours_title">{weekday ? `Your Favorite Happy Hours on ${weekday}` : "Your Favorite Happy Hours Today"}</h1>
             <div className="all__happy_hours">
                 <CardDeck>
                 {

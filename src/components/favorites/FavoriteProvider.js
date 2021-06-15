@@ -7,7 +7,6 @@ export const FavoriteProvider = (props) => {
     const [favorites, setFavorites] = useState([])
 
     const getFavorites = (weekday=null) => {
-       
         let fetchURL = ""
         if (weekday != null) {
             fetchURL = `http://localhost:8000/favorites?day=${weekday}`

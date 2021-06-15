@@ -8,7 +8,7 @@ export const FavWeekDayTabs = () => {
     return (
 
         <div>
-            <Nav className="weekday__tabs" justify variant="tabs" defaultActiveKey="/happyhours">
+            <Nav className="weekday__tabs" justify variant="tabs" defaultActiveKey="/favorites">
                 <Nav.Item>
                     <Nav.Link href="/favorites?day=Monday">Monday</Nav.Link>
                 </Nav.Item>
