@@ -2,6 +2,7 @@ import React from "react"
 import { Route } from "react-router-dom"
 import { HappyHourProvider } from "./happyhour/HappyHourProvider"
 import { HappyHourList } from "./happyhour/HappyHourList"
+import { HappyHourSearch } from "./happyhour/HappyHourSearch"
 import { WeekDayTabs } from "./nav/WeekDayTabs"
 import { FavWeekDayTabs } from "./nav/FavWeekDayTabs"
 import { ProfileProvider } from "./auth/ProfileProvider"
@@ -18,8 +19,7 @@ export const ApplicationViews = () => {
             <HappyHourProvider>
                 <Route path="/happyhours">
                     <WeekDayTabs />
-                </Route>
-                <Route exact path="/happyhours">
+                    <HappyHourSearch />
                     <HappyHourList />
                 </Route>
                 <FavoriteProvider>

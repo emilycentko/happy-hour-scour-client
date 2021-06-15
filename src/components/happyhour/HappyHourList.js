@@ -7,9 +7,9 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import CardDeck from 'react-bootstrap/CardDeck'
 
-export const HappyHourList = (props) => {
+export const HappyHourList = () => {
 
-    const {happyhours, getHappyHours} = useContext(HappyHourContext)
+    const {happyhours, getHappyHours, searchTerms, getHappyHourSearch} = useContext(HappyHourContext)
     const [active, setActive] = useState(false)
 
     const history = useHistory()
@@ -19,14 +19,17 @@ export const HappyHourList = (props) => {
 
     useEffect(() => {
         getHappyHours(weekday)
-        
     }, [weekday])
+
+    useEffect(() => {
+        getHappyHourSearch(weekday, searchTerms)
+    }, [weekday, searchTerms])
 
 
     return (
         <>
             <h1 className="happy__hours_title">{weekday ? `${weekday}'s Happy Hours` : "Today's Happy Hours"}</h1>
-            <div className="all__happy_hours">
+            <div className="happy_hours">
                 <CardDeck>
                 {
                     happyhours.map(happyhour => {
