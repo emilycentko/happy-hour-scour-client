@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useState } from "react"
-import { HappyHourContext } from "./HappyHourProvider.js"
+import { FavoriteContext } from "./FavoriteProvider.js"
 import { useHistory, useLocation } from 'react-router-dom'
 import Heart from "react-heart"
-import "./HappyHour.css"
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import CardDeck from 'react-bootstrap/CardDeck'
 
-export const HappyHourList = (props) => {
+export const FavoriteList = (props) => {
 
-    const {happyhours, getHappyHours} = useContext(HappyHourContext)
+    const {favorites, getFavorites} = useContext(FavoriteContext)
     const [active, setActive] = useState(false)
 
     const history = useHistory()
@@ -18,26 +17,25 @@ export const HappyHourList = (props) => {
     const [_, weekday] = day.search.split("=")
 
     useEffect(() => {
-        getHappyHours(weekday)
+        getFavorites(weekday)
         
     }, [weekday])
 
-
     return (
         <>
-            <h1 className="happy__hours_title">{weekday ? `${weekday}'s Happy Hours` : "Today's Happy Hours"}</h1>
+            <h1 className="happy__hours_title">{weekday ? `Your Favorite Happy Hours on ${weekday}` : "Your Favorite Happy Hours Today"}</h1>
             <div className="all__happy_hours">
                 <CardDeck>
                 {
-                    happyhours.map(happyhour => {
-                        return <section key={`happyhour--${happyhour.id}`} className="happyhour">
+                    favorites.map(favorite => {
+                        return <section key={`happyhour--${favorite.happy_hour.id}`} className="happyhour">
                         
                         <Card style={{ width: '18rem' }}>
-                            <Card.Img src={happyhour.image} />
+                            <Card.Img src={favorite.happy_hour.image} />
                             <Card.Body>
-                                <Card.Title className="happyhour__business">{happyhour.business.name}</Card.Title>
+                                <Card.Title className="happyhour__business">{favorite.happy_hour.business.name}</Card.Title>
                                 <Card.Text>
-                                    <div className="happyhour__description">{happyhour.description}</div>
+                                    <div className="happyhour__description">{favorite.happy_hour.description}</div>
                                 </Card.Text>
                            </Card.Body>
                             <Card.Footer>
