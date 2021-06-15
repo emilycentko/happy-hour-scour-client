@@ -3,14 +3,7 @@
     text-align: center;
 }
 
-.all__happy_hours {
-    /* display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly; */
-}
-
 .happyhour {
-    /* flex-basis: 20%; */
     margin: 1em;
     padding: 1em;
     position:relative;
