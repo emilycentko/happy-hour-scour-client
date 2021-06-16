@@ -3,6 +3,11 @@
     text-align: center;
 }
 
+.happyhours {
+    display: flex;
+    flex-direction: row;
+}
+
 .happyhour {
     margin: 1em;
     padding: 1em;
