@@ -17,13 +17,13 @@ export const ApplicationViews = () => {
             lineHeight: "1.75rem"
         }}>
             <HappyHourProvider>
-                <Route path="/happyhours">
-                    <WeekDayTabs />
-                    <HappyHourSearch />
-                    <HappyHourList />
-                </Route>
                 <FavoriteProvider>
-                    <Route path="/favorites">
+                    <Route path="/happyhours">
+                        <HappyHourSearch />
+                        <WeekDayTabs />
+                        <HappyHourList />
+                    </Route>
+                        <Route path="/favorites">
                         <FavWeekDayTabs />
                         <FavoriteList />
                     </Route>

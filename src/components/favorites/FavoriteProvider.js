@@ -22,8 +22,22 @@ export const FavoriteProvider = (props) => {
             .then(setFavorites)
     }
 
+    const addFavorite = (favorite) => {
+        return fetch("http://localhost:8000/favorites", {
+            method: "POST",    
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("hhs_token")}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "happy_hour": favorite
+            })
+        })
+        .then(getFavorites)
+    }
+
     return (
-        <FavoriteContext.Provider value={{ favorites, getFavorites }}>
+        <FavoriteContext.Provider value={{ favorites, getFavorites, addFavorite }}>
             {props.children}
         </FavoriteContext.Provider>
     )
