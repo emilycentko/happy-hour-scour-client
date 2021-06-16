@@ -36,8 +36,18 @@ export const FavoriteProvider = (props) => {
         .then(getFavorites)
     }
 
+    const removeFavorite = favoriteId => {
+        return fetch("http://localhost:8000//favorites", {
+            method: "DELETE",
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
+            }
+        })
+            .then(getFavorites)
+    }
+
     return (
-        <FavoriteContext.Provider value={{ favorites, getFavorites, addFavorite }}>
+        <FavoriteContext.Provider value={{ favorites, getFavorites, addFavorite, removeFavorite }}>
             {props.children}
         </FavoriteContext.Provider>
     )
