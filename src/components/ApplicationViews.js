@@ -24,7 +24,7 @@ export const ApplicationViews = () => {
                         <HappyHourList />
                     </Route>
                         <Route path="/favorites">
-                        <FavWeekDayTabs />
+                        
                         <FavoriteList />
                     </Route>
                 </FavoriteProvider>

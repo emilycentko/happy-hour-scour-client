@@ -6,24 +6,24 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import CardDeck from 'react-bootstrap/CardDeck'
 
-export const FavoriteList = (props) => {
+export const FavoriteList = () => {
 
     const {favorites, getFavorites} = useContext(FavoriteContext)
-    const [active, setActive] = useState(false)
+    // const [active, setActive] = useState(false)
 
     const history = useHistory()
 
-    const day = useLocation()
-    const [_, weekday] = day.search.split("=")
+    // const day = useLocation()
+    // const [_, weekday] = day.search.split("=")
 
     useEffect(() => {
-        getFavorites(weekday)
-        
-    }, [weekday])
+        getFavorites()
+    }, [])
 
     return (
         <>
-            <h1 className="happy__hours_title">{weekday ? `Your Favorite Happy Hours on ${weekday}` : "Your Favorite Happy Hours Today"}</h1>
+            {/* <h1 className="happy__hours_title">{weekday ? `Your Favorite Happy Hours on ${weekday}` : "Your Favorite Happy Hours Today"}</h1> */}
+            <h1>Favorites</h1>
             <div className="all__happy_hours">
                 <CardDeck>
                 {
@@ -40,9 +40,9 @@ export const FavoriteList = (props) => {
                            </Card.Body>
                             <Card.Footer>
                                 <Button variant="primary">Reviews</Button>
-                           <button className="happyhour__heart" style={{ width: "2rem" }}>
+                           {/* <button className="happyhour__heart" style={{ width: "2rem" }}>
 			                    <Heart isActive={active} onClick={() => setActive(!active)}/>
-		                    </button>
+		                    </button> */}
                             </Card.Footer>
                         </Card>
                     </section>

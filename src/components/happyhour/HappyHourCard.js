@@ -1,15 +1,21 @@
 
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import { FavoriteContext } from "../favorites/FavoriteProvider.js"
 import Heart from "react-heart"
 import "./HappyHour.css"
+import { HappyHourContext } from "./HappyHourProvider.js"
+import { useLocation } from 'react-router-dom'
 
 export const HappyHourCard = ({happyhour}) => {
 
-    const {addFavorite} = useContext(FavoriteContext)
-    const [active, setActive] = useState(false)
+    const {addFavorite, removeFavorite, getHappyHours} = useContext(HappyHourContext)
+    // const [active, setActive] = useState(false)
+
+    const day = useLocation()
+    const [_, weekday] = day.search.split("=")
+
 
     return (
         
@@ -24,11 +30,25 @@ export const HappyHourCard = ({happyhour}) => {
             </Card.Body>
             <Card.Footer>
                 <Button variant="primary">Reviews</Button>
-                <button className="happyhour__heart" style={{ width: "2rem" }}
-			        onClick={() => 
-                        addFavorite(happyhour.id)}>
-                    <Heart isActive={active} onClick={() => setActive(!active)}></Heart>
-		        </button>
+                    
+                     {happyhour.favorited 
+                    
+                    ? <button className="happyhour__heart" 
+                        onClick={() =>
+                            removeFavorite(happyhour.id)
+                            .then(() => getHappyHours(weekday))}
+                            >
+                            Remove
+                        </button>
+                    : <button className="happyhour__heart" 
+                        onClick={() => 
+                            addFavorite(happyhour.id)
+                            .then(() => getHappyHours(weekday))}
+                            >
+                            Add
+                    </button>
+                    }
+                    
             </Card.Footer>
         </Card>
         
