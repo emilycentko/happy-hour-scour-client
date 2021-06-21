@@ -2,16 +2,13 @@
 import React, { useContext, useState, useEffect } from "react"
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import { FavoriteContext } from "../favorites/FavoriteProvider.js"
-import Heart from "react-heart"
-import "./HappyHour.css"
 import { HappyHourContext } from "./HappyHourProvider.js"
 import { useLocation } from 'react-router-dom'
+import "./HappyHour.css"
 
 export const HappyHourCard = ({happyhour, specialtypes, locations}) => {
 
     const {addFavorite, removeFavorite, getHappyHours} = useContext(HappyHourContext)
-    // const [active, setActive] = useState(false)
 
     const day = useLocation()
     const [_, weekday] = day.search.split("=")
@@ -25,7 +22,16 @@ export const HappyHourCard = ({happyhour, specialtypes, locations}) => {
                 <Card.Title className="happyhour__business">{happyhour.business.name}</Card.Title>
                     <Card.Text>
                                     
-                        <div className="happyhour__description"></div>
+                        <ul className="happyhour__description">
+                            {happyhour.wine !== null ?
+                                <li>{happyhour.wine}</li> : ""}
+                            {happyhour.beer !== null ?
+                                <li>{happyhour.beer}</li> : ""}
+                            {happyhour.liquor !== null ?
+                                <li>{happyhour.liquor}</li> : ""}
+                            {happyhour.food !== null ?
+                                <li>{happyhour.food}</li> : ""}
+                        </ul>
                     </Card.Text>
             </Card.Body>
             <Card.Footer>

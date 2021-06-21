@@ -1,18 +1,18 @@
 import React, { useContext, useEffect, useState } from "react"
-import { HappyHourContext } from "./HappyHourProvider.js"
 import { useLocation } from 'react-router-dom'
+import { HappyHourContext } from "./HappyHourProvider.js"
 import { HappyHourCard } from "./HappyHourCard.js"
-import "./HappyHour.css"
-import Row from 'react-bootstrap/Row'
-import Container from 'react-bootstrap/Container'
 import { SpecialTypeContext } from "../specialtype/SpecialTypeProvider.js"
+import { LocationContext } from "../location/LocationProvider.js"
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 import Collapse from 'react-bootstrap/Collapse'
 import Button from 'react-bootstrap/Button'
-import { LocationContext } from "../location/LocationProvider.js"
+import "./HappyHour.css"
 
 export const HappyHourList = () => {
 
-    const {happyhours, happyhour, getHappyHours, searchTerms, getHappyHourSearch, getFilterSpecialType, getFilterLocation, getFilterPatio, getFilterTrivia} = useContext(HappyHourContext)
+    const {happyhours, getHappyHours, searchTerms, getHappyHourSearch, getFilterSpecialType, getFilterLocation, getFilterPatio, getFilterTrivia} = useContext(HappyHourContext)
     const {specialtypes, getSpecialTypes} = useContext(SpecialTypeContext)
     const {locations, getLocations} = useContext(LocationContext)
     const [open, setOpen] = useState(false)
@@ -45,7 +45,7 @@ export const HappyHourList = () => {
                 <div id="filter-collapse">
            
 
-                <h5>Special type</h5>
+                <h5>Offerings</h5>
 
                 {
                     specialtypes.map(specialtype => {
@@ -81,7 +81,7 @@ export const HappyHourList = () => {
                     })
                 }
 
-                <h5>Offerings</h5>
+                <h5>Features</h5>
 
                     <div key={true}>
                         <input type="checkbox" value={true} id={true}

@@ -6,7 +6,6 @@ export const HappyHourProvider = (props) => {
 
     const [happyhours, setHappyHours] = useState([])
     const [searchTerms, setTerms] = useState("")
-    const [filtered, setFiltered] = useState([])
 
     const getHappyHours = (weekday=null) => {
         let fetchURL = ""
@@ -130,7 +129,7 @@ export const HappyHourProvider = (props) => {
     }
 
     return (
-        <HappyHourContext.Provider value={{ happyhours, searchTerms, getHappyHours, setFiltered,
+        <HappyHourContext.Provider value={{ happyhours, searchTerms, getHappyHours, 
             getHappyHourSearch, getFilterSpecialType, getFilterLocation, getFilterPatio, getFilterTrivia,
             setTerms, addFavorite, removeFavorite }}>
             {props.children}
