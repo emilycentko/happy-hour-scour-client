@@ -9,6 +9,7 @@ import { ProfileProvider } from "./auth/ProfileProvider"
 import { Profile } from "./auth/Profile"
 import { FavoriteProvider } from "./favorites/FavoriteProvider"
 import { FavoriteList } from "./favorites/FavoriteList"
+import { SpecialTypeProvider } from "./specialtype/SpecialTypeProvider"
 
 export const ApplicationViews = () => {
     return <>
@@ -17,10 +18,12 @@ export const ApplicationViews = () => {
             lineHeight: "1.75rem"
         }}>
             <HappyHourProvider>
+                <SpecialTypeProvider>
                 <FavoriteProvider>
                     <Route path="/happyhours">
                         <HappyHourSearch />
                         <WeekDayTabs />
+                        
                         <HappyHourList />
                     </Route>
                         <Route path="/favorites">
@@ -28,6 +31,7 @@ export const ApplicationViews = () => {
                         <FavoriteList />
                     </Route>
                 </FavoriteProvider>
+                </SpecialTypeProvider>
             </HappyHourProvider>
             <ProfileProvider>
                 <Route exact path="/profile">

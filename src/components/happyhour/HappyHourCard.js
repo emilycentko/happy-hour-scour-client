@@ -8,7 +8,7 @@ import "./HappyHour.css"
 import { HappyHourContext } from "./HappyHourProvider.js"
 import { useLocation } from 'react-router-dom'
 
-export const HappyHourCard = ({happyhour}) => {
+export const HappyHourCard = ({happyhour, specialtypes}) => {
 
     const {addFavorite, removeFavorite, getHappyHours} = useContext(HappyHourContext)
     // const [active, setActive] = useState(false)
@@ -25,7 +25,7 @@ export const HappyHourCard = ({happyhour}) => {
                 <Card.Title className="happyhour__business">{happyhour.business.name}</Card.Title>
                     <Card.Text>
                                     
-                        <div className="happyhour__description">{happyhour.description}</div>
+                        <div className="happyhour__description"></div>
                     </Card.Text>
             </Card.Body>
             <Card.Footer>

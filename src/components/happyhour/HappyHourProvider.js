@@ -6,6 +6,7 @@ export const HappyHourProvider = (props) => {
 
     const [happyhours, setHappyHours] = useState([])
     const [searchTerms, setTerms] = useState("")
+    const [filtered, setFiltered] = useState([])
 
     const getHappyHours = (weekday=null) => {
         let fetchURL = ""
@@ -29,6 +30,22 @@ export const HappyHourProvider = (props) => {
             fetchURL = `http://localhost:8000/happyhours?day=${weekday}&searchTerms=${searchTerms}`
         } else {
             fetchURL = `http://localhost:8000/happyhours?searchTerms=${searchTerms}`
+        }
+        return fetch(fetchURL, {
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
+            }
+        })
+            .then(response => response.json())
+            .then(setHappyHours)
+    }
+
+    const getFilterSpecialType = (weekday=null, typeId) => {
+        let fetchURL = ""
+        if (weekday != null) {
+            fetchURL = `http://localhost:8000/happyhours?day=${weekday}&special_type=${typeId}`
+        } else {
+            fetchURL = `http://localhost:8000/happyhours?special_type=${typeId}`
         }
         return fetch(fetchURL, {
             headers:{
@@ -65,7 +82,7 @@ export const HappyHourProvider = (props) => {
     }
 
     return (
-        <HappyHourContext.Provider value={{ happyhours, searchTerms, getHappyHours, getHappyHourSearch, setTerms, addFavorite, removeFavorite }}>
+        <HappyHourContext.Provider value={{ happyhours, searchTerms, getHappyHours, setFiltered, getHappyHourSearch, getFilterSpecialType, setTerms, addFavorite, removeFavorite }}>
             {props.children}
         </HappyHourContext.Provider>
     )

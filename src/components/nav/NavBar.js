@@ -14,7 +14,7 @@ export const NavBar = (props) => {
                         <img className="navbar__logo" src={Logo} />
                     </li>
                     <li className="navbar__item">
-                        <Link className="navbar__link" to="/happyhours">Today</Link>
+                        <Link className="navbar__link" to="/happyhours">Home</Link>
                     </li>
                     <li className="navbar__item">
                         <Link className="navbar__link" to="/favorites">Favorites</Link>
