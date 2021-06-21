@@ -12,7 +12,7 @@ import { LocationContext } from "../location/LocationProvider.js"
 
 export const HappyHourList = () => {
 
-    const {happyhours, happyhour, getHappyHours, searchTerms, getHappyHourSearch, getFilterSpecialType, getFilterLocation, getFilterPatio} = useContext(HappyHourContext)
+    const {happyhours, happyhour, getHappyHours, searchTerms, getHappyHourSearch, getFilterSpecialType, getFilterLocation, getFilterPatio, getFilterTrivia} = useContext(HappyHourContext)
     const {specialtypes, getSpecialTypes} = useContext(SpecialTypeContext)
     const {locations, getLocations} = useContext(LocationContext)
     const [open, setOpen] = useState(false)
@@ -45,7 +45,7 @@ export const HappyHourList = () => {
                 <div id="filter-collapse">
            
 
-                <h5>Filter by special type</h5>
+                <h5>Special type</h5>
 
                 {
                     specialtypes.map(specialtype => {
@@ -63,7 +63,7 @@ export const HappyHourList = () => {
                     })
                 }
 
-                <h5>Filter by location</h5>
+                <h5>Location</h5>
 
                 {
                     locations.map(location => {
@@ -81,9 +81,8 @@ export const HappyHourList = () => {
                     })
                 }
 
-                <h5>Filter by patio</h5>
+                <h5>Offerings</h5>
 
-                    
                     <div key={true}>
                         <input type="checkbox" value={true} id={true}
                         onChange={(event) => {
@@ -91,6 +90,16 @@ export const HappyHourList = () => {
                             ? getFilterPatio(weekday, event.target.value)
                             : getHappyHours(weekday)}}
                         /> Patio
+                    </div>
+                
+                    
+                    <div key={true}>
+                        <input type="checkbox" value={true} id={true}
+                        onChange={(event) => {
+                            event.target.checked === true
+                            ? getFilterTrivia(weekday, event.target.value)
+                            : getHappyHours(weekday)}}
+                        /> Trivia
                     </div>
 
                 
