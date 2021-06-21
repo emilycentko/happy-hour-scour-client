@@ -8,11 +8,13 @@ import Container from 'react-bootstrap/Container'
 import { SpecialTypeContext } from "../specialtype/SpecialTypeProvider.js"
 import Collapse from 'react-bootstrap/Collapse'
 import Button from 'react-bootstrap/Button'
+import { LocationContext } from "../location/LocationProvider.js"
 
 export const HappyHourList = () => {
 
-    const {happyhours, getHappyHours, searchTerms, getHappyHourSearch, getFilterSpecialType} = useContext(HappyHourContext)
+    const {happyhours, getHappyHours, searchTerms, getHappyHourSearch, getFilterSpecialType, getFilterLocation} = useContext(HappyHourContext)
     const {specialtypes, getSpecialTypes} = useContext(SpecialTypeContext)
+    const {locations, getLocations} = useContext(LocationContext)
     const [open, setOpen] = useState(false)
     
 
@@ -21,7 +23,8 @@ export const HappyHourList = () => {
 
     useEffect(() => {
         getHappyHours(weekday)
-        .then(getSpecialTypes)
+        getSpecialTypes()
+        getLocations()
     }, [weekday])
 
     useEffect(() => {
@@ -60,6 +63,24 @@ export const HappyHourList = () => {
                     })
                 }
 
+                <h5>Filter by location</h5>
+
+                {
+                    locations.map(location => {
+                    
+                    return <>
+                    <div key={location.id}>
+                        <input type="checkbox" value={location.id} id={location.name}
+                        onChange={(event) => {
+                            event.target.checked === true
+                            ? getFilterLocation(weekday, event.target.value)
+                            : getHappyHours(weekday)}}
+                        /> {location.name}
+                    </div>
+                    </>
+                    })
+                }
+
                 
                 </div>
             </Collapse>
@@ -72,7 +93,7 @@ export const HappyHourList = () => {
                     {
                         happyhours.map(happyhour => {
                         
-                        return <HappyHourCard key={happyhour.id} happyhour={happyhour} specialtypes={specialtypes}/>
+                        return <HappyHourCard key={happyhour.id} happyhour={happyhour} specialtypes={specialtypes} locations={locations}/>
 
                         })
                     }
