@@ -10,6 +10,7 @@ import { Profile } from "./auth/Profile"
 import { FavoriteProvider } from "./favorites/FavoriteProvider"
 import { FavoriteList } from "./favorites/FavoriteList"
 import { SpecialTypeProvider } from "./specialtype/SpecialTypeProvider"
+import { LocationProvider } from "./location/LocationProvider"
 
 export const ApplicationViews = () => {
     return <>
@@ -19,6 +20,7 @@ export const ApplicationViews = () => {
         }}>
             <HappyHourProvider>
                 <SpecialTypeProvider>
+                <LocationProvider>
                 <FavoriteProvider>
                     <Route path="/happyhours">
                         <HappyHourSearch />
@@ -31,6 +33,7 @@ export const ApplicationViews = () => {
                         <FavoriteList />
                     </Route>
                 </FavoriteProvider>
+                </LocationProvider>
                 </SpecialTypeProvider>
             </HappyHourProvider>
             <ProfileProvider>

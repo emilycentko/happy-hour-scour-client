@@ -13,7 +13,7 @@ export const SpecialTypeProvider = (props) => {
         }
     })
       .then(response => response.json())
-      .then(setSpecialTypes);
+      .then(setSpecialTypes)
   };
   
   return (
