@@ -72,6 +72,22 @@ export const HappyHourProvider = (props) => {
             .then(setHappyHours)
     }
 
+    const getFilterPatio = (weekday=null) => {
+        let fetchURL = ""
+        if (weekday != null) {
+            fetchURL = `http://localhost:8000/happyhours?day=${weekday}&patio=true`
+        } else {
+            fetchURL = `http://localhost:8000/happyhours?patio=true`
+        }
+        return fetch(fetchURL, {
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
+            }
+        })
+            .then(response => response.json())
+            .then(setHappyHours)
+    }
+
     const addFavorite = (favorite) => {
         
         return fetch("http://localhost:8000/favorites", {
@@ -99,7 +115,7 @@ export const HappyHourProvider = (props) => {
 
     return (
         <HappyHourContext.Provider value={{ happyhours, searchTerms, getHappyHours, setFiltered,
-            getHappyHourSearch, getFilterSpecialType, getFilterLocation, setTerms, addFavorite, removeFavorite }}>
+            getHappyHourSearch, getFilterSpecialType, getFilterLocation, getFilterPatio, setTerms, addFavorite, removeFavorite }}>
             {props.children}
         </HappyHourContext.Provider>
     )

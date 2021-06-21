@@ -12,7 +12,7 @@ import { LocationContext } from "../location/LocationProvider.js"
 
 export const HappyHourList = () => {
 
-    const {happyhours, getHappyHours, searchTerms, getHappyHourSearch, getFilterSpecialType, getFilterLocation} = useContext(HappyHourContext)
+    const {happyhours, happyhour, getHappyHours, searchTerms, getHappyHourSearch, getFilterSpecialType, getFilterLocation, getFilterPatio} = useContext(HappyHourContext)
     const {specialtypes, getSpecialTypes} = useContext(SpecialTypeContext)
     const {locations, getLocations} = useContext(LocationContext)
     const [open, setOpen] = useState(false)
@@ -80,6 +80,18 @@ export const HappyHourList = () => {
                     </>
                     })
                 }
+
+                <h5>Filter by patio</h5>
+
+                    
+                    <div key={true}>
+                        <input type="checkbox" value={true} id={true}
+                        onChange={(event) => {
+                            event.target.checked === true
+                            ? getFilterPatio(weekday, event.target.value)
+                            : getHappyHours(weekday)}}
+                        /> Patio
+                    </div>
 
                 
                 </div>
