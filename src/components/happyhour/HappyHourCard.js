@@ -6,12 +6,19 @@ import { HappyHourContext } from "./HappyHourProvider.js"
 import { useLocation } from 'react-router-dom'
 import "./HappyHour.css"
 
-export const HappyHourCard = ({happyhour, specialtypes, locations}) => {
+export const HappyHourCard = ({happyhour}) => {
 
-    const {addFavorite, removeFavorite, getHappyHours} = useContext(HappyHourContext)
+    const {time, addFavorite, removeFavorite, getHappyHours} = useContext(HappyHourContext)
 
     const day = useLocation()
     const [_, weekday] = day.search.split("=")
+
+
+    // Card returns happy hour business, time, and special + add/remove button in a ternary
+    // to add to favorites if not in database OR remove if it is. Calls add/removeFavorite function
+    // taking in parameter looking for happyhour id to add THAT id to the database OR remove
+    // if it already exists. Then getHappyHours sets state so that button changes on click without a 
+    // page refresh
 
 
     return (
@@ -21,7 +28,10 @@ export const HappyHourCard = ({happyhour, specialtypes, locations}) => {
             <Card.Body>
                 <Card.Title className="happyhour__business">{happyhour.business.name}</Card.Title>
                     <Card.Text>
-                                    
+                        <div>
+                            {happyhour.start_time} p.m. - {happyhour.start_time} p.m.
+                        </div>
+                        
                         <ul className="happyhour__description">
                             {happyhour.wine !== null ?
                                 <li>{happyhour.wine}</li> : ""}

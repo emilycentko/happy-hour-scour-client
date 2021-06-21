@@ -18,8 +18,13 @@ export const HappyHourList = () => {
     const [open, setOpen] = useState(false)
     
 
+    // useLocation to grab the param 'weekday' from url and set = day property, split on = to grab that day
+    // ie '/happyhours?day=Tuesday' will split on the = in url to grab 'Tuesday'
+
     const day = useLocation()
     const [_, weekday] = day.search.split("=")
+
+    // Look for weekday if there is one in argument, if it is not null
 
     useEffect(() => {
         getHappyHours(weekday)
@@ -31,6 +36,13 @@ export const HappyHourList = () => {
         getHappyHourSearch(weekday, searchTerms)
     }, [weekday, searchTerms])
 
+
+    // Return collapsed filter options + happy hour list for today by default or weekday if not null in params.
+    // Filter options map over special types and locations to see all options and grab that value and id to render
+    // all matching results, taking in weekday (if not null) and the value as arguments, if checked. Then getHappyHours to
+    // re-set state without refresh when unchecked.
+
+    // Last two filters are boolean fields looking for a 'true' value.
 
       return (
           <>
@@ -114,7 +126,7 @@ export const HappyHourList = () => {
                     {
                         happyhours.map(happyhour => {
                         
-                        return <HappyHourCard key={happyhour.id} happyhour={happyhour} specialtypes={specialtypes} locations={locations}/>
+                        return <HappyHourCard key={happyhour.id} happyhour={happyhour}/>
 
                         })
                     }

@@ -6,8 +6,14 @@ import { HappyHourContext } from "../happyhour/HappyHourProvider.js"
 
 export const FavoriteCard = ({favorite}) => {
 
-    const {addFavorite, removeFavorite} = useContext(HappyHourContext)
+    const {removeFavorite} = useContext(HappyHourContext)
     const {getFavorites} = useContext(FavoriteContext)
+
+    // Card returns favorited happy hour business, time, and special + remove button 
+    // to remove from /favorites page and database. Calls removeFavorite function
+    // taking in parameter looking for that favorite.happy_hour.id to remove.
+    // Then getFavorites sets state so that button changes on click without a 
+    // page refresh
 
     return (
         
@@ -16,7 +22,7 @@ export const FavoriteCard = ({favorite}) => {
             <Card.Body>
                 <Card.Title className="happyhour__business">{favorite.happy_hour.business.name}</Card.Title>
                     <Card.Text>
-                                    
+                        <div>{favorite.happy_hour.start_time} p.m. - {favorite.happy_hour.end_time} p.m.</div>           
                         
                         <ul className="happyhour__description">
                             {favorite.happy_hour.wine !== null ?
@@ -33,24 +39,14 @@ export const FavoriteCard = ({favorite}) => {
             </Card.Body>
             <Card.Footer>
                 <Button variant="primary">Reviews</Button>
-                    
-                     {favorite.happy_hour 
-                    
-                    ? <button className="happyhour__heart" 
+                     
+                    <button className="happyhour__heart" 
                         onClick={() =>
                             removeFavorite(favorite.happy_hour.id)
                             .then(() => getFavorites())}
                             >
                             Remove
-                        </button>
-                    : <button className="happyhour__heart" 
-                        onClick={() => 
-                            addFavorite(favorite.happy_hour.id)
-                            .then(() => getFavorites())}
-                            >
-                            Add
                     </button>
-                    }
                     
             </Card.Footer>
         </Card>
