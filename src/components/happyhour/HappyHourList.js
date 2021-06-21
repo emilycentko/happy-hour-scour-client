@@ -11,10 +11,8 @@ import Button from 'react-bootstrap/Button'
 
 export const HappyHourList = () => {
 
-    const {happyhours, getHappyHours, searchTerms, getHappyHourSearch} = useContext(HappyHourContext)
+    const {happyhours, getHappyHours, searchTerms, getHappyHourSearch, getFilterSpecialType} = useContext(HappyHourContext)
     const {specialtypes, getSpecialTypes} = useContext(SpecialTypeContext)
-    const [filteredHappyHours, setHappyHours] = useState([])
-    const [typeSelected, setTypeSelected] = useState("")
     const [open, setOpen] = useState(false)
     
 
@@ -27,18 +25,9 @@ export const HappyHourList = () => {
     }, [weekday])
 
     useEffect(() => {
-        setHappyHours(happyhours)
-      }, [happyhours])
-
-    useEffect(() => {
         getHappyHourSearch(weekday, searchTerms)
     }, [weekday, searchTerms])
 
-    const filterSpecials = (event) => {
-        const filteredSpecialsByType = happyhours.filter(happyhour => happyhour.special_type.id === parseInt(event.target.value))
-        setHappyHours(filteredSpecialsByType)
-        setTypeSelected(parseInt(event.target.value))
-      }
 
       return (
           <>
@@ -53,25 +42,25 @@ export const HappyHourList = () => {
                 <div id="filter-collapse">
            
 
-            <h5>Filter by special type</h5>
+                <h5>Filter by special type</h5>
 
                 {
                     specialtypes.map(specialtype => {
                     
                     return <>
-                    <input type="checkbox" value={specialtype.id} checked={typeSelected === specialtype.id}
-                        onClick={filterSpecials}
+                    <div key={specialtype.id}>
+                        <input type="checkbox" value={specialtype.id} id={specialtype.type}
+                        onChange={(event) => {
+                            event.target.checked === true
+                            ? getFilterSpecialType(weekday, event.target.value)
+                            : getHappyHours(weekday)}}
                         /> {specialtype.type}
+                    </div>
                     </>
-                })
-            }
+                    })
+                }
 
-                <div>
-                <button onClick={() => {
-                    setHappyHours(happyhours)
-                    setTypeSelected("")
-                }}>Clear Filter</button>
-                </div>
+                
                 </div>
             </Collapse>
 
@@ -81,7 +70,7 @@ export const HappyHourList = () => {
                     <Row className="justify-content-md-left">
            
                     {
-                        filteredHappyHours.map(happyhour => {
+                        happyhours.map(happyhour => {
                         
                         return <HappyHourCard key={happyhour.id} happyhour={happyhour} specialtypes={specialtypes}/>
 

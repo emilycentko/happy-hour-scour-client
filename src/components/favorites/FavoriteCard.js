@@ -25,7 +25,7 @@ export const FavoriteCard = ({favorite}) => {
                 <Card.Title className="happyhour__business">{favorite.happy_hour.business.name}</Card.Title>
                     <Card.Text>
                                     
-                        <div className="happyhour__description">{favorite.happy_hour.description}</div>
+                        <div className="happyhour__description"></div>
                     </Card.Text>
             </Card.Body>
             <Card.Footer>

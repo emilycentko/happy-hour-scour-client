@@ -25,7 +25,7 @@ export const HappyHourCard = ({happyhour, specialtypes}) => {
                 <Card.Title className="happyhour__business">{happyhour.business.name}</Card.Title>
                     <Card.Text>
                                     
-                        <div className="happyhour__description">{happyhour.description}</div>
+                        <div className="happyhour__description"></div>
                     </Card.Text>
             </Card.Body>
             <Card.Footer>
