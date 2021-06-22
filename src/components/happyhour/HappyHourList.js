@@ -42,7 +42,7 @@ export const HappyHourList = () => {
     // all matching results, taking in weekday (if not null) and the value as arguments, if checked. Then getHappyHours to
     // re-set state without refresh when unchecked.
 
-    // Last two filters are boolean fields looking for a 'true' value.
+    // Last two filters are boolean fields looking for a 'true' value to only display results = True
 
       return (
           <>
