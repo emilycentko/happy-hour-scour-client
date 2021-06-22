@@ -18,9 +18,11 @@ Nashville is known for its hospitality and local food scene, and I love playing 
 3. Runs the app in the development mode.
 4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Happy Hour Scour ERD
+## Happy Hour Scour ERD & Wireframe
 
 Feel free to reference the [Happy Hour Scour database diagram](https://dbdiagram.io/d/60be5f25b29a09603d185b39) in the browser to view the tables and relationships for the database.
+
+[Wireframe](https://www.figma.com/file/8Y60ugTHJLazceE7dtamGS/Backend-Capstone-Wireframe?node-id=0%3A1) created using Figma.
 
 ## Server-side Repository
 
