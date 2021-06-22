@@ -5,14 +5,24 @@ export const ReviewContext = createContext()
 export const ReviewProvider = props => {
     const [ reviews, setReviews ] = useState([])
 
-    const getReviews = () => {
-        return fetch(`http://localhost:8000/reviews`, {
+    // const getReviews = () => {
+    //     return fetch(`http://localhost:8000/reviews`, {
+    //         headers: {
+    //             "Authorization": `Token ${localStorage.getItem("hhs_token")}`
+    //         }
+    //     })
+    //         .then(response => response.json())
+    //         .then(setReviews)
+    // }
+
+    const getReviewsByHappyHour = (happyHourId) => {
+        return fetch(`http://localhost:8000/reviews?happyhour=${happyHourId}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("hhs_token")}`
             }
         })
-            .then(response => response.json())
-            .then(setReviews)
+        .then(response => response.json())
+        .then(setReviews)
     }
 
     const getReviewById = (id) => {
@@ -24,15 +34,6 @@ export const ReviewProvider = props => {
             .then(response => response.json())
     }
 
-    const getReviewsByHappyHour = (happyHourId) => {
-        return fetch(`http://localhost:8000/reviews?happyhour=${happyHourId}`, {
-            headers: {
-                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
-            }
-        })
-        .then(response => response.json())
-        .then(setReviews)
-    }
 
     const addReview = review => {
         return fetch(`http://localhost:8000/reviews`, {
@@ -58,9 +59,19 @@ export const ReviewProvider = props => {
             .then(getReviewById)
     }
 
+    const deleteReview = (reviewId) => {
+        return fetch(`http://localhost:8000/reviews/${reviewId}`,{
+            method:"DELETE",
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
+            }
+        })
+        .then(getReviewsByHappyHour)
+    }
+
     return (
         <ReviewContext.Provider value={{
-            reviews, getReviews, getReviewById, addReview, getReviewsByHappyHour, editReview
+            reviews, getReviewById, addReview, getReviewsByHappyHour, editReview, deleteReview
         }}>
             {props.children}
         </ReviewContext.Provider>

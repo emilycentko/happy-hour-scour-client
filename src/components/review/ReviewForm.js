@@ -1,41 +1,69 @@
 import React, { useContext, useState, useEffect } from "react"
 import { HappyHourContext } from "../happyhour/HappyHourProvider.js"
 import { ReviewContext } from './ReviewProvider'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import StarRatings from 'react-star-ratings'
 
 
 export const ReviewForm = () => {
-    const { addReview } = useContext(ReviewContext)
+    const { reviews, addReview, getReviewsByHappyHour } = useContext(ReviewContext)
     const { getHappyHourById} = useContext(HappyHourContext)
 
     const history = useHistory()
 
-     const happyhour = useLocation()
-    const [_, happyHourId] = happyhour.search.split("=")
-
+    const happyHourId = useParams()
+    
+    
     const [review, setReview] = useState({
         review: "",
         rating: 0,
-        happyHourId: 0,
-        customerId: 0
+        happy_hour: happyHourId,
     })
-
-    useEffect(() => {
-        getHappyHourById(happyHourId)
+    
+    const [isLoading, setIsLoading] = useState(true)
+    
+    // useEffect(() => {
+    //     if (happyHourId) {
+    //         console.log(happyHourId)
+    //         getHappyHourById(happyHourId)
+    //         .then(setReview)
+    //             setIsLoading(false)
             
-    }, [])
+    //         } else {
+    //     setIsLoading(false)
+    //     }
+    // }, [])
 
-    const handleInputChange = e => {
+    useEffect(()=>{
+        getHappyHourById(happyHourId).then(setReview)
+    },[reviews])
+
+    useEffect(()=>{
+        getReviewsByHappyHour(happyHourId)
+    },[])
+
+    const handleInputChange = (event) => {
         const newReview = {...review}
-        newReview.text = e.target.value
+        newReview[event.target.id] = event.target.value
         setReview(newReview)
     }
 
-    const handleSubmit = e => {
-        e.preventDefault()
-        addReview(review)
-        history.push(`/reviews?happyhours=${happyHourId}`)
+    const handleRatingChange = (event) =>{
+        const newReview = {...review}
+        newReview.rating = event
+        setReview(newReview)
+    }
+
+    const handleSubmit = () => {
+        setIsLoading(true);
+            
+        addReview({
+            review: review.review,
+            rating: review.rating,
+            happyHourId: review.happyHourId,
+            customerId: review.customerId
+            })
+            .then(() => history.push(`/reviews?happyhours=${happyHourId}`))
     }
 
     return (
@@ -56,7 +84,7 @@ export const ReviewForm = () => {
                 <StarRatings
                     rating={review.rating}
                     starRatedColor="blue"
-                    changeRating={handleInputChange}
+                    changeRating={handleRatingChange}
                     numberOfStars={10}
                     name='rating'
                     />

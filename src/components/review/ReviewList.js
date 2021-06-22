@@ -32,7 +32,7 @@ export const ReviewList = () => {
                 {
                     reviews.map(review => {
                         
-                            console.log(review.customer.user.id)
+                            
                         return <section key={`review--${review.id}`} className="review">
                         <h3 className="name">{review.happy_hour.business.name}</h3>
                         <div className="review__author">{review.customer.user.first_name} {review.customer.user.last_name}</div>
