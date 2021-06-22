@@ -1,25 +1,30 @@
 import React, { useContext, useEffect, useState } from "react"
-import { HappyHourContext } from "./HappyHourProvider.js"
 import { useLocation } from 'react-router-dom'
+import { HappyHourContext } from "./HappyHourProvider.js"
 import { HappyHourCard } from "./HappyHourCard.js"
-import "./HappyHour.css"
-import Row from 'react-bootstrap/Row'
-import Container from 'react-bootstrap/Container'
 import { SpecialTypeContext } from "../specialtype/SpecialTypeProvider.js"
+import { LocationContext } from "../location/LocationProvider.js"
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 import Collapse from 'react-bootstrap/Collapse'
 import Button from 'react-bootstrap/Button'
-import { LocationContext } from "../location/LocationProvider.js"
+import "./HappyHour.css"
 
 export const HappyHourList = () => {
 
-    const {happyhours, getHappyHours, searchTerms, getHappyHourSearch, getFilterSpecialType, getFilterLocation} = useContext(HappyHourContext)
+    const {happyhours, getHappyHours, searchTerms, getHappyHourSearch, getFilterSpecialType, getFilterLocation, getFilterPatio, getFilterTrivia} = useContext(HappyHourContext)
     const {specialtypes, getSpecialTypes} = useContext(SpecialTypeContext)
     const {locations, getLocations} = useContext(LocationContext)
     const [open, setOpen] = useState(false)
     
 
+    // useLocation to grab the param 'weekday' from url and set = day property, split on = to grab that day
+    // ie '/happyhours?day=Tuesday' will split on the = in url to grab 'Tuesday'
+
     const day = useLocation()
     const [_, weekday] = day.search.split("=")
+
+    // Look for weekday if there is one in argument, if it is not null
 
     useEffect(() => {
         getHappyHours(weekday)
@@ -31,6 +36,13 @@ export const HappyHourList = () => {
         getHappyHourSearch(weekday, searchTerms)
     }, [weekday, searchTerms])
 
+
+    // Return collapsed filter options + happy hour list for today by default or weekday if not null in params.
+    // Filter options map over special types and locations to see all options and grab that value and id to render
+    // all matching results, taking in weekday (if not null) and the value as arguments, if checked. Then getHappyHours to
+    // re-set state without refresh when unchecked.
+
+    // Last two filters are boolean fields looking for a 'true' value to only display results = True
 
       return (
           <>
@@ -45,7 +57,7 @@ export const HappyHourList = () => {
                 <div id="filter-collapse">
            
 
-                <h5>Filter by special type</h5>
+                <h5>Offerings</h5>
 
                 {
                     specialtypes.map(specialtype => {
@@ -63,7 +75,7 @@ export const HappyHourList = () => {
                     })
                 }
 
-                <h5>Filter by location</h5>
+                <h5>Location</h5>
 
                 {
                     locations.map(location => {
@@ -81,6 +93,27 @@ export const HappyHourList = () => {
                     })
                 }
 
+                <h5>Features</h5>
+
+                    <div key={true}>
+                        <input type="checkbox" value={true} id={true}
+                        onChange={(event) => {
+                            event.target.checked === true
+                            ? getFilterPatio(weekday, event.target.value)
+                            : getHappyHours(weekday)}}
+                        /> Patio
+                    </div>
+                
+                    
+                    <div key={true}>
+                        <input type="checkbox" value={true} id={true}
+                        onChange={(event) => {
+                            event.target.checked === true
+                            ? getFilterTrivia(weekday, event.target.value)
+                            : getHappyHours(weekday)}}
+                        /> Trivia
+                    </div>
+
                 
                 </div>
             </Collapse>
@@ -93,7 +126,7 @@ export const HappyHourList = () => {
                     {
                         happyhours.map(happyhour => {
                         
-                        return <HappyHourCard key={happyhour.id} happyhour={happyhour} specialtypes={specialtypes} locations={locations}/>
+                        return <HappyHourCard key={happyhour.id} happyhour={happyhour}/>
 
                         })
                     }

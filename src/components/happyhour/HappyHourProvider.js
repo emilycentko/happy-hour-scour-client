@@ -6,7 +6,6 @@ export const HappyHourProvider = (props) => {
 
     const [happyhours, setHappyHours] = useState([])
     const [searchTerms, setTerms] = useState("")
-    const [filtered, setFiltered] = useState([])
 
     const getHappyHours = (weekday=null) => {
         let fetchURL = ""
@@ -72,6 +71,38 @@ export const HappyHourProvider = (props) => {
             .then(setHappyHours)
     }
 
+    const getFilterPatio = (weekday=null) => {
+        let fetchURL = ""
+        if (weekday != null) {
+            fetchURL = `http://localhost:8000/happyhours?day=${weekday}&patio=true`
+        } else {
+            fetchURL = `http://localhost:8000/happyhours?patio=true`
+        }
+        return fetch(fetchURL, {
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
+            }
+        })
+            .then(response => response.json())
+            .then(setHappyHours)
+    }
+
+    const getFilterTrivia = (weekday=null) => {
+        let fetchURL = ""
+        if (weekday != null) {
+            fetchURL = `http://localhost:8000/happyhours?day=${weekday}&trivia=true`
+        } else {
+            fetchURL = `http://localhost:8000/happyhours?trivia=true`
+        }
+        return fetch(fetchURL, {
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
+            }
+        })
+            .then(response => response.json())
+            .then(setHappyHours)
+    }
+
     const addFavorite = (favorite) => {
         
         return fetch("http://localhost:8000/favorites", {
@@ -98,8 +129,9 @@ export const HappyHourProvider = (props) => {
     }
 
     return (
-        <HappyHourContext.Provider value={{ happyhours, searchTerms, getHappyHours, setFiltered,
-            getHappyHourSearch, getFilterSpecialType, getFilterLocation, setTerms, addFavorite, removeFavorite }}>
+        <HappyHourContext.Provider value={{ happyhours, searchTerms, getHappyHours, 
+            getHappyHourSearch, getFilterSpecialType, getFilterLocation, getFilterPatio, getFilterTrivia,
+            setTerms, addFavorite, removeFavorite }}>
             {props.children}
         </HappyHourContext.Provider>
     )

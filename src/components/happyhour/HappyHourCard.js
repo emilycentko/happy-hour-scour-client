@@ -2,19 +2,23 @@
 import React, { useContext, useState, useEffect } from "react"
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import { FavoriteContext } from "../favorites/FavoriteProvider.js"
-import Heart from "react-heart"
-import "./HappyHour.css"
 import { HappyHourContext } from "./HappyHourProvider.js"
 import { useLocation } from 'react-router-dom'
+import "./HappyHour.css"
 
-export const HappyHourCard = ({happyhour, specialtypes, locations}) => {
+export const HappyHourCard = ({happyhour}) => {
 
-    const {addFavorite, removeFavorite, getHappyHours} = useContext(HappyHourContext)
-    // const [active, setActive] = useState(false)
+    const {time, addFavorite, removeFavorite, getHappyHours} = useContext(HappyHourContext)
 
     const day = useLocation()
     const [_, weekday] = day.search.split("=")
+
+
+    // Card returns happy hour business, time, and special + add/remove button in a ternary
+    // to add to favorites if not in database OR remove if it is. Calls add/removeFavorite function
+    // taking in parameter looking for happyhour id to add THAT id to the database OR remove
+    // if it already exists. Then getHappyHours sets state so that button changes on click without a 
+    // page refresh
 
 
     return (
@@ -24,8 +28,20 @@ export const HappyHourCard = ({happyhour, specialtypes, locations}) => {
             <Card.Body>
                 <Card.Title className="happyhour__business">{happyhour.business.name}</Card.Title>
                     <Card.Text>
-                                    
-                        <div className="happyhour__description"></div>
+                        <div>
+                            {happyhour.start_time} p.m. - {happyhour.start_time} p.m.
+                        </div>
+                        
+                        <ul className="happyhour__description">
+                            {happyhour.wine !== null ?
+                                <li>{happyhour.wine}</li> : ""}
+                            {happyhour.beer !== null ?
+                                <li>{happyhour.beer}</li> : ""}
+                            {happyhour.liquor !== null ?
+                                <li>{happyhour.liquor}</li> : ""}
+                            {happyhour.food !== null ?
+                                <li>{happyhour.food}</li> : ""}
+                        </ul>
                     </Card.Text>
             </Card.Body>
             <Card.Footer>

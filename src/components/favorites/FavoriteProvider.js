@@ -16,31 +16,6 @@ export const FavoriteProvider = (props) => {
             .then(setFavorites)
     }
 
-    // const addFavorite = (favorite) => {
-        
-    //     return fetch("http://localhost:8000/favorites", {
-    //         method: "POST",    
-    //         headers:{
-    //             "Authorization": `Token ${localStorage.getItem("hhs_token")}`,
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify({
-    //             "happy_hour": favorite
-    //         })
-    //     })
-    //     .then(getFavorites)
-    // }
-
-    // const removeFavorite = happyhourId => {
-    //     return fetch(`http://localhost:8000/favorites/${happyhourId}`, {
-    //         method: "DELETE",
-    //         headers:{
-    //             "Authorization": `Token ${localStorage.getItem("hhs_token")}`
-    //         }
-    //     })
-    //         .then(getFavorites)
-    // }
-
     return (
         <FavoriteContext.Provider value={{ favorites, getFavorites }}>
             {props.children}

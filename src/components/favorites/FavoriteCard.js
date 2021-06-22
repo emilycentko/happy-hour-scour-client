@@ -1,21 +1,19 @@
-
-import React, { useContext, useState, useEffect } from "react"
+import React, { useContext } from "react"
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import { FavoriteContext } from "../favorites/FavoriteProvider.js"
-import Heart from "react-heart"
 import { HappyHourContext } from "../happyhour/HappyHourProvider.js"
-import { useLocation } from 'react-router-dom'
 
 export const FavoriteCard = ({favorite}) => {
 
-    const {addFavorite, removeFavorite} = useContext(HappyHourContext)
-    const {favorites, getFavorites} = useContext(FavoriteContext)
-    // const [active, setActive] = useState(false)
+    const {removeFavorite} = useContext(HappyHourContext)
+    const {getFavorites} = useContext(FavoriteContext)
 
-    const day = useLocation()
-    const [_, weekday] = day.search.split("=")
-
+    // Card returns favorited happy hour business, time, and special + remove button 
+    // to remove from /favorites page and database. Calls removeFavorite function
+    // taking in parameter looking for that favorite.happy_hour.id to remove.
+    // Then getFavorites sets state so that button changes on click without a 
+    // page refresh
 
     return (
         
@@ -24,30 +22,31 @@ export const FavoriteCard = ({favorite}) => {
             <Card.Body>
                 <Card.Title className="happyhour__business">{favorite.happy_hour.business.name}</Card.Title>
                     <Card.Text>
-                                    
-                        <div className="happyhour__description"></div>
+                        <div>{favorite.happy_hour.start_time} p.m. - {favorite.happy_hour.end_time} p.m.</div>           
+                        
+                        <ul className="happyhour__description">
+                            {favorite.happy_hour.wine !== null ?
+                                <li>{favorite.happy_hour.wine}</li> : ""}
+                            {favorite.happy_hour.beer !== null ?
+                                <li>{favorite.happy_hour.beer}</li> : ""}
+                            {favorite.happy_hour.liquor !== null ?
+                                <li>{favorite.happy_hour.liquor}</li> : ""}
+                            {favorite.happy_hour.food !== null ?
+                                <li>{favorite.happy_hour.food}</li> : ""}
+                        </ul>
+                        
                     </Card.Text>
             </Card.Body>
             <Card.Footer>
                 <Button variant="primary">Reviews</Button>
-                    
-                     {favorite.happy_hour 
-                    
-                    ? <button className="happyhour__heart" 
+                     
+                    <button className="happyhour__heart" 
                         onClick={() =>
                             removeFavorite(favorite.happy_hour.id)
                             .then(() => getFavorites())}
                             >
                             Remove
-                        </button>
-                    : <button className="happyhour__heart" 
-                        onClick={() => 
-                            addFavorite(favorite.happy_hour.id)
-                            .then(() => getFavorites())}
-                            >
-                            Add
                     </button>
-                    }
                     
             </Card.Footer>
         </Card>
