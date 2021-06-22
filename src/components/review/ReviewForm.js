@@ -1,18 +1,18 @@
 import React, { useContext, useState, useEffect } from "react"
 import { HappyHourContext } from "../happyhour/HappyHourProvider.js"
 import { ReviewContext } from './ReviewProvider'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import StarRatings from 'react-star-ratings'
 
 
 export const ReviewForm = () => {
     const { addReview } = useContext(ReviewContext)
-    const { getHappyHourById}
-    const [happyhour, setHappyHour] = useState({})
+    const { getHappyHourById} = useContext(HappyHourContext)
 
     const history = useHistory()
 
-    const { happyHourId } = useParams()
+     const happyhour = useLocation()
+    const [_, happyHourId] = happyhour.search.split("=")
 
     const [review, setReview] = useState({
         review: "",
@@ -23,7 +23,7 @@ export const ReviewForm = () => {
 
     useEffect(() => {
         getHappyHourById(happyHourId)
-            .then(setHappyHour)
+            
     }, [])
 
     const handleInputChange = e => {
@@ -35,16 +35,16 @@ export const ReviewForm = () => {
     const handleSubmit = e => {
         e.preventDefault()
         addReview(review)
-        history.push(`/happyhours/${happyHourId}`)
+        history.push(`/reviews?happyhours=${happyHourId}`)
     }
 
     return (
         <form className="reviewForm">
             
-            <h2 className="reviewForm__title">Leave a Review</h2>
+            <h2 className="reviewForm__review">Leave a Review</h2>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="title">Review</label>
+                    <label htmlFor="review">Review</label>
                     <input type="text" id="review" required autoFocus className="form-control"
                         value={review.review}
                         onChange={handleInputChange}

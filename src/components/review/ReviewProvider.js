@@ -15,7 +15,7 @@ export const ReviewProvider = props => {
             .then(setReviews)
     }
 
-    const getReviewById = id => {
+    const getReviewById = (id) => {
         return fetch(`http://localhost:8000/reviews/${id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("hhs_token")}`
@@ -24,13 +24,14 @@ export const ReviewProvider = props => {
             .then(response => response.json())
     }
 
-    const getReviewsByHappyHour = happyHourId => {
-        return fetch(`http://localhost:8000/reviews?happy_hour_id=${happyHourId}`, {
+    const getReviewsByHappyHour = (happyHourId) => {
+        return fetch(`http://localhost:8000/reviews?happyhour=${happyHourId}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("hhs_token")}`
             }
         })
-            .then(response => response.json())
+        .then(response => response.json())
+        .then(setReviews)
     }
 
     const addReview = review => {
@@ -42,7 +43,7 @@ export const ReviewProvider = props => {
             },
             body: JSON.stringify(review)
         })
-            .then(response => response.json())
+        .then(getReviewById)
     }
 
     const editReview = review => {
@@ -54,7 +55,7 @@ export const ReviewProvider = props => {
             },
             body: JSON.stringify(review)
         })
-            .then(getReviews)
+            .then(getReviewById)
     }
 
     return (

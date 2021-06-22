@@ -31,7 +31,7 @@ export const HappyHourCard = ({happyhour}) => {
                 <Card.Title className="happyhour__business">{happyhour.business.name}</Card.Title>
                     <Card.Text>
                         <div>
-                            {happyhour.start_time} p.m. - {happyhour.start_time} p.m.
+                            {happyhour.start_time} p.m. - {happyhour.end_time} p.m.
                         </div>
                         
                         <ul className="happyhour__description">
