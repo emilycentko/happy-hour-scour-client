@@ -46,7 +46,7 @@ export const ReviewProvider = props => {
     }
 
     const editReview = review => {
-        return fetch(`http://localhost:8000/reviews?happy_hour_id=${happyHourId}`, { 
+        return fetch(`http://localhost:8000/reviews/${review.id}`, { 
             method: "PUT",
             headers:{
                 "Authorization": `Token ${localStorage.getItem("hhs_token")}`,
@@ -59,7 +59,7 @@ export const ReviewProvider = props => {
 
     return (
         <ReviewContext.Provider value={{
-            reviews, getReviews, getReviewById, addReview, getReviewsByHappyHour
+            reviews, getReviews, getReviewById, addReview, getReviewsByHappyHour, editReview
         }}>
             {props.children}
         </ReviewContext.Provider>
