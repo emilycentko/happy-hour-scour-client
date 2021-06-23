@@ -10,6 +10,9 @@ import { FavoriteProvider } from "./favorites/FavoriteProvider"
 import { FavoriteList } from "./favorites/FavoriteList"
 import { SpecialTypeProvider } from "./specialtype/SpecialTypeProvider"
 import { LocationProvider } from "./location/LocationProvider"
+import { ReviewProvider } from "./review/ReviewProvider"
+import { ReviewList } from "./review/ReviewList"
+
 
 export const ApplicationViews = () => {
     return <>
@@ -21,16 +24,24 @@ export const ApplicationViews = () => {
                 <SpecialTypeProvider>
                 <LocationProvider>
                 <FavoriteProvider>
+                <ReviewProvider>
                     <Route path="/happyhours">
                         <WeekDayTabs />
                         <HappyHourSearch />
                         
                         <HappyHourList />
                     </Route>
-                        <Route path="/favorites">
+                    <Route path="/favorites">
                         
                         <FavoriteList />
                     </Route>
+                    <Route exact path="/reviews">
+                        <ReviewList />
+                    </Route>
+                    <Route path="/reviews/:happyhour(\d+)">
+                        <ReviewList />
+                    </Route>
+                </ReviewProvider>
                 </FavoriteProvider>
                 </LocationProvider>
                 </SpecialTypeProvider>

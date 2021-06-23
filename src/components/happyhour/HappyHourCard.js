@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from "react"
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import { HappyHourContext } from "./HappyHourProvider.js"
-import { useLocation } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 import "./HappyHour.css"
 import { IoFastFoodSharp } from 'react-icons/io5'
 import { FaWineGlassAlt } from 'react-icons/fa'
@@ -16,6 +16,8 @@ export const HappyHourCard = ({happyhour}) => {
 
     const day = useLocation()
     const [_, weekday] = day.search.split("=")
+
+    const history = useHistory()
 
 
     // Card returns happy hour business, time, and special + add/remove button in a ternary
@@ -49,7 +51,11 @@ export const HappyHourCard = ({happyhour}) => {
                     </Card.Text>
             </Card.Body>
             <Card.Footer>
-                <Button variant="primary">Reviews</Button>
+                <Button variant="primary"
+                    onClick={() => {
+                        history.push(`/reviews/${happyhour.id}`)}}>
+                    Reviews
+                </Button>
                     
                      {happyhour.favorited 
                     
