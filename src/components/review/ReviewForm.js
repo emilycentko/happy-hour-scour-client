@@ -1,47 +1,23 @@
 import React, { useContext, useState, useEffect } from "react"
 import { HappyHourContext } from "../happyhour/HappyHourProvider.js"
 import { ReviewContext } from './ReviewProvider'
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import ReactStars from "react-rating-stars-component"
 
 
 export const ReviewForm = () => {
-    const { reviews, addReview, getReviewsByHappyHour,  } = useContext(ReviewContext)
-    const { getHappyHourById} = useContext(HappyHourContext)
+    const { reviews, addReview, editReview, getReviewsByHappyHour } = useContext(ReviewContext)
 
-    const history = useHistory()
-
-    const happyHourId = useParams()
+    const {happyhour} = useParams()
+    console.log(happyhour)
     
     
     const [review, setReview] = useState({
         review: "",
         rating: 0,
-        happy_hour: happyHourId,
+        happyHourId: happyhour,
+        customerId: 0
     })
-    
-    const [isLoading, setIsLoading] = useState(true)
-    
-    // useEffect(() => {
-    //     if (happyHourId) {
-    //         console.log(happyHourId)
-    //         getHappyHourById(happyHourId)
-    //         .then(setReview)
-    //             setIsLoading(false)
-            
-    //         } else {
-    //     setIsLoading(false)
-    //     }
-    // }, [])
-
-    // useEffect(()=>{
-    //     getHappyHourById(happyHourId).then(setReview)
-    // },[reviews])
-
-    // useEffect(()=>{
-        
-    //     getReviewsByHappyHour(happyHourId)
-    // },[])
 
     const handleInputChange = (event) => {
         const newReview = {...review}
@@ -56,32 +32,36 @@ export const ReviewForm = () => {
     }
 
     const handleSubmit = () => {
-        setIsLoading(true);
-            
-        addReview({
-            review: review.review,
-            rating: review.rating,
-            happyHourId: review.happyHourId,
-            customerId: review.customerId
+
+        if (review.id){
+            editReview({
+                id: review.id,
+                rating: review.rating,
+                review: review.review,
+                happyHourId: review.happyHourId
             })
-            .then(() => history.push(`/reviews?happyhours=${happyHourId}`))
+            .then(getReviewsByHappyHour(happyhour))
+        } else {
+            
+            addReview({
+                rating: review.rating,
+                review: review.review,
+                happyHourId: review.happyHourId,
+                customerId: review.customerId
+            })
+            .then(getReviewsByHappyHour(happyhour))
+        }
     }
 
     return (
         <form className="reviewForm">
             
-            <h2 className="reviewForm__review">Leave a Review</h2>
+            <h2 className="reviewForm__review">{review.id ? "Edit Review" : "New Review"}</h2>
             <fieldset>
-                <div className="form-group">
-                    <label htmlFor="review">Review</label>
-                    <input type="text" id="review" required autoFocus className="form-control"
-                        value={review.review}
-                        onChange={handleInputChange}
-                    />
-                </div>
                 <ReactStars
                     count={5}
                     value={review.rating}
+                    id="rating"
                     onChange={handleRatingChange}
                     size={24}
                     isHalf={false}
@@ -91,9 +71,26 @@ export const ReviewForm = () => {
                     activeColor="#ffd700"
                 />
             </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="review">Review</label>
+                    <input type="text" id="review" required autoFocus className="form-control"
+                        value={review.review}
+                        onChange={handleInputChange}
+                    />
+                </div>
+            </fieldset>
 
             
-            <input type="submit" onClick={handleSubmit}></input>
+            <button type="submit"
+                
+                onClick={evt => {
+                    
+                    evt.preventDefault()
+                    handleSubmit()
+                }}>
+                {review.id ? "Save" : "Add Review"}
+                </button>
         </form>
     )
 }

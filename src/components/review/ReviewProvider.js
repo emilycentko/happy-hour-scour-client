@@ -45,7 +45,7 @@ export const ReviewProvider = props => {
             },
             body: JSON.stringify(review)
         })
-        .then(getReviewById)
+        
     }
 
     const editReview = review => {
@@ -57,7 +57,7 @@ export const ReviewProvider = props => {
             },
             body: JSON.stringify(review)
         })
-            .then(getReviewById)
+            
     }
 
     const deleteReview = (reviewId) => {
@@ -67,7 +67,7 @@ export const ReviewProvider = props => {
                 "Authorization": `Token ${localStorage.getItem("hhs_token")}`
             }
         })
-        .then(getReviewsByHappyHour)
+       
     }
 
     return (
