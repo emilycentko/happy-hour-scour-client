@@ -3,6 +3,10 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import { FavoriteContext } from "../favorites/FavoriteProvider.js"
 import { HappyHourContext } from "../happyhour/HappyHourProvider.js"
+import { IoFastFoodSharp } from 'react-icons/io5'
+import { FaWineGlassAlt } from 'react-icons/fa'
+import { IoBeerSharp } from 'react-icons/io5'
+import { GiMartini} from "react-icons/gi"
 
 export const FavoriteCard = ({favorite}) => {
 
@@ -24,16 +28,16 @@ export const FavoriteCard = ({favorite}) => {
                     <Card.Text>
                         <div>{favorite.happy_hour.start_time} p.m. - {favorite.happy_hour.end_time} p.m.</div>           
                         
-                        <ul className="happyhour__description">
+                        <div className="happyhour__description">
                             {favorite.happy_hour.wine !== null ?
-                                <li>{favorite.happy_hour.wine}</li> : ""}
+                                <p><FaWineGlassAlt /> {favorite.happy_hour.wine}</p> : ""}
                             {favorite.happy_hour.beer !== null ?
-                                <li>{favorite.happy_hour.beer}</li> : ""}
+                                <p><IoBeerSharp /> {favorite.happy_hour.beer}</p> : ""}
                             {favorite.happy_hour.liquor !== null ?
-                                <li>{favorite.happy_hour.liquor}</li> : ""}
+                                <p><GiMartini /> {favorite.happy_hour.liquor}</p> : ""}
                             {favorite.happy_hour.food !== null ?
-                                <li>{favorite.happy_hour.food}</li> : ""}
-                        </ul>
+                                <p><IoFastFoodSharp /> {favorite.happy_hour.food}</p> : ""}
+                        </div>
                         
                     </Card.Text>
             </Card.Body>

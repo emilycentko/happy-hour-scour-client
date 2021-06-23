@@ -17,7 +17,7 @@ import { ReviewForm } from "./review/ReviewForm"
 export const ApplicationViews = () => {
     return <>
         <main style={{
-            margin: "5rem 2rem",
+            margin: "2.5rem 2rem",
             lineHeight: "1.75rem"
         }}>
             <HappyHourProvider>
@@ -26,8 +26,8 @@ export const ApplicationViews = () => {
                 <FavoriteProvider>
                 <ReviewProvider>
                     <Route path="/happyhours">
-                        <HappyHourSearch />
                         <WeekDayTabs />
+                        <HappyHourSearch />
                         
                         <HappyHourList />
                     </Route>

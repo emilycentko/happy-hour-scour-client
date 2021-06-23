@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# Happy Hour Scour
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description & Background
 
-## Available Scripts
+Nashville is known for its hospitality and local food scene, and I love playing host to friends and family who visit by showcasing the restaurants and bars Nashville has to offer. For my full-stack project, I wanted to build an application that helps support local businesses and their exposure, while also helping users on a budget. A user can search and filter happy hours by today's day or any day of the week, location, drink types, food, and more to find the best spot based on what they offer and what a user is looking for.
 
-In the project directory, you can run:
+## Technologies Used
 
-### `npm start`
+<b>Built with</b>
+- React.js
+- Python & Django (sever-side)
+- [React Bootstrap](https://react-bootstrap.github.io/) and CSS3 for styling
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Setup
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Clone this repository and change to the directory in the terminal.
+2. In the project directory, you can run `npm start`
+3. Runs the app in the development mode.
+4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `npm test`
+## ERD & Wireframe
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Feel free to reference the [Happy Hour Scour database diagram](https://dbdiagram.io/d/60be5f25b29a09603d185b39) in the browser to view the tables and relationships for the database.
 
-### `npm run build`
+[Wireframe](https://www.figma.com/file/8Y60ugTHJLazceE7dtamGS/Backend-Capstone-Wireframe?node-id=0%3A1) created using Figma.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Server-side Repository
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Server-side repository and instructions to access can be found [here](https://github.com/emilycentko/happy-hour-scour-server).
