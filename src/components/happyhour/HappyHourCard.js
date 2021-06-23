@@ -53,7 +53,7 @@ export const HappyHourCard = ({happyhour}) => {
             <Card.Footer>
                 <Button variant="primary"
                     onClick={() => {
-                        history.push(`/reviews?happyhour=${happyhour.id}`)}}>
+                        history.push(`/reviews/${happyhour.id}`)}}>
                     Reviews
                 </Button>
                     

@@ -5,17 +5,18 @@ export const ReviewContext = createContext()
 export const ReviewProvider = props => {
     const [ reviews, setReviews ] = useState([])
 
-    // const getReviews = () => {
-    //     return fetch(`http://localhost:8000/reviews`, {
-    //         headers: {
-    //             "Authorization": `Token ${localStorage.getItem("hhs_token")}`
-    //         }
-    //     })
-    //         .then(response => response.json())
-    //         .then(setReviews)
-    // }
+    const getReviews = () => {
+        return fetch(`http://localhost:8000/reviews`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
+            }
+        })
+            .then(response => response.json())
+            .then(setReviews)
+    }
 
     const getReviewsByHappyHour = (happyHourId) => {
+        console.log(happyHourId)
         return fetch(`http://localhost:8000/reviews?happyhour=${happyHourId}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("hhs_token")}`
@@ -71,7 +72,7 @@ export const ReviewProvider = props => {
 
     return (
         <ReviewContext.Provider value={{
-            reviews, getReviewById, addReview, getReviewsByHappyHour, editReview, deleteReview
+            reviews, getReviews, getReviewById, addReview, getReviewsByHappyHour, editReview, deleteReview
         }}>
             {props.children}
         </ReviewContext.Provider>

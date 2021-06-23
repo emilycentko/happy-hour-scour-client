@@ -12,7 +12,7 @@ import { SpecialTypeProvider } from "./specialtype/SpecialTypeProvider"
 import { LocationProvider } from "./location/LocationProvider"
 import { ReviewProvider } from "./review/ReviewProvider"
 import { ReviewList } from "./review/ReviewList"
-import { ReviewForm } from "./review/ReviewForm"
+
 
 export const ApplicationViews = () => {
     return <>
@@ -35,11 +35,11 @@ export const ApplicationViews = () => {
                         
                         <FavoriteList />
                     </Route>
-                    <Route path="/reviews">
+                    <Route exact path="/reviews">
                         <ReviewList />
                     </Route>
-                    <Route path="/reviews/new">
-                        <ReviewForm />
+                    <Route path="/reviews/:happyhour(\d+)">
+                        <ReviewList />
                     </Route>
                 </ReviewProvider>
                 </FavoriteProvider>

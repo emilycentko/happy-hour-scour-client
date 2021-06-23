@@ -2,11 +2,11 @@ import React, { useContext, useState, useEffect } from "react"
 import { HappyHourContext } from "../happyhour/HappyHourProvider.js"
 import { ReviewContext } from './ReviewProvider'
 import { useHistory, useParams } from 'react-router-dom'
-import StarRatings from 'react-star-ratings'
+import ReactStars from "react-rating-stars-component"
 
 
 export const ReviewForm = () => {
-    const { reviews, addReview, getReviewsByHappyHour } = useContext(ReviewContext)
+    const { reviews, addReview, getReviewsByHappyHour,  } = useContext(ReviewContext)
     const { getHappyHourById} = useContext(HappyHourContext)
 
     const history = useHistory()
@@ -34,13 +34,14 @@ export const ReviewForm = () => {
     //     }
     // }, [])
 
-    useEffect(()=>{
-        getHappyHourById(happyHourId).then(setReview)
-    },[reviews])
+    // useEffect(()=>{
+    //     getHappyHourById(happyHourId).then(setReview)
+    // },[reviews])
 
-    useEffect(()=>{
-        getReviewsByHappyHour(happyHourId)
-    },[])
+    // useEffect(()=>{
+        
+    //     getReviewsByHappyHour(happyHourId)
+    // },[])
 
     const handleInputChange = (event) => {
         const newReview = {...review}
@@ -78,17 +79,20 @@ export const ReviewForm = () => {
                         onChange={handleInputChange}
                     />
                 </div>
+                <ReactStars
+                    count={5}
+                    value={review.rating}
+                    onChange={handleRatingChange}
+                    size={24}
+                    isHalf={false}
+                    emptyIcon={<i className="far fa-star"></i>}
+                    halfIcon={<i className="fa fa-star-half-alt"></i>}
+                    fullIcon={<i className="fa fa-star"></i>}
+                    activeColor="#ffd700"
+                />
             </fieldset>
 
-            <fieldset>
-                <StarRatings
-                    rating={review.rating}
-                    starRatedColor="blue"
-                    changeRating={handleRatingChange}
-                    numberOfStars={10}
-                    name='rating'
-                    />
-            </fieldset>
+            
             <input type="submit" onClick={handleSubmit}></input>
         </form>
     )
