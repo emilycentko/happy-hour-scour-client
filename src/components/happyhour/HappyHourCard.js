@@ -5,6 +5,10 @@ import Button from 'react-bootstrap/Button'
 import { HappyHourContext } from "./HappyHourProvider.js"
 import { useLocation } from 'react-router-dom'
 import "./HappyHour.css"
+import { IoFastFoodSharp } from 'react-icons/io5'
+import { FaWineGlassAlt } from 'react-icons/fa'
+import { IoBeerSharp } from 'react-icons/io5'
+import { GiMartini} from "react-icons/gi"
 
 export const HappyHourCard = ({happyhour}) => {
 
@@ -29,19 +33,19 @@ export const HappyHourCard = ({happyhour}) => {
                 <Card.Title className="happyhour__business">{happyhour.business.name}</Card.Title>
                     <Card.Text>
                         <div>
-                            {happyhour.start_time} p.m. - {happyhour.start_time} p.m.
+                            {happyhour.start_time} p.m. - {happyhour.end_time} p.m.
                         </div>
                         
-                        <ul className="happyhour__description">
+                        <div className="happyhour__description">
                             {happyhour.wine !== null ?
-                                <li>{happyhour.wine}</li> : ""}
+                                <p><FaWineGlassAlt /> {happyhour.wine}</p> : ""}
                             {happyhour.beer !== null ?
-                                <li>{happyhour.beer}</li> : ""}
+                                <p><IoBeerSharp /> {happyhour.beer}</p> : ""}
                             {happyhour.liquor !== null ?
-                                <li>{happyhour.liquor}</li> : ""}
+                                <p><GiMartini /> {happyhour.liquor}</p> : ""}
                             {happyhour.food !== null ?
-                                <li>{happyhour.food}</li> : ""}
-                        </ul>
+                                <p><IoFastFoodSharp /> {happyhour.food}</p> : ""}
+                        </div>
                     </Card.Text>
             </Card.Body>
             <Card.Footer>

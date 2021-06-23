@@ -14,7 +14,7 @@ import { LocationProvider } from "./location/LocationProvider"
 export const ApplicationViews = () => {
     return <>
         <main style={{
-            margin: "5rem 2rem",
+            margin: "2.5rem 2rem",
             lineHeight: "1.75rem"
         }}>
             <HappyHourProvider>
@@ -22,8 +22,8 @@ export const ApplicationViews = () => {
                 <LocationProvider>
                 <FavoriteProvider>
                     <Route path="/happyhours">
-                        <HappyHourSearch />
                         <WeekDayTabs />
+                        <HappyHourSearch />
                         
                         <HappyHourList />
                     </Route>

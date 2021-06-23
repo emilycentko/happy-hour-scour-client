@@ -1,6 +1,6 @@
 import { Link, useHistory } from "react-router-dom"
 import "./NavBar.css"
-import Logo from "./HHSlogo.png"
+import Logo from "./transparent-logo2.png"
 
 export const NavBar = (props) => {
 
@@ -9,44 +9,50 @@ export const NavBar = (props) => {
     return (
         <>
             <div className="header">
-                <ul className="navbar">
-                    <li className="logo">
-                        <img className="navbar__logo" src={Logo} />
-                    </li>
-                    <li className="navbar__item">
-                        <Link className="navbar__link" to="/happyhours">Home</Link>
-                    </li>
-                    <li className="navbar__item">
-                        <Link className="navbar__link" to="/favorites">Favorites</Link>
-                    </li>
-                    <li className="navbar__item">
-                        <Link className="navbar__link" to="/profile">Profile</Link>
-                    </li>
-                   
-                    <div className="navbar__item">
-                        {
-                            (localStorage.getItem("hhs_token") !== null) ?
-                                <li className="navbar__item">
-                                    <button className="nav-link fakeLink navbar__item"
-                                        onClick={() => {
-                                            localStorage.removeItem("hhs_token")
-                                            props.history.push({ pathname: "/happyhours" })
-                                        }}
-                                    >Logout</button>
-                                </li> :
-                                <>
-                                    <li className="nav-item">
-                                        <Link className="nav-link" to="/login">Login</Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link className="nav-link" to="/register">Register</Link>
-                                    </li>
-                                </>
-                        }
+                <div className="nav__bar">
+                    <div className="left__navigation">
+                        <div className="logo">
+                            <img className="navbar__logo" src={Logo} />
+                        </div>
+                    
+                        <div className="navbar__item home__link">
+                            <Link className="navbar__link" to="/happyhours">Home</Link>
+                        </div>
                     </div>
-                </ul>
+                    <div className="right__navigation">
+                        <div className="navbar__item favorites__link">
+                            <Link className="navbar__link" to="/favorites">Favorites</Link>
+                        </div>
+                        <div className="navbar__item profile__link">
+                            <Link className="navbar__link" to="/profile">Profile</Link>
+                        </div>
+                   
+                        <div className="navbar__item">
+                            {
+                                (localStorage.getItem("hhs_token") !== null) ?
+                                    <div className="navbar__item">
+                                        <button className="nav-link logout navbar__item"
+                                            onClick={() => {
+                                                localStorage.removeItem("hhs_token")
+                                                props.history.push({ pathname: "/happyhours" })
+                                            }}
+                                        >Logout</button>
+                                    </div> :
+                                    <>
+                                        <div className="nav-item">
+                                            <Link className="nav-link" to="/login">Login</Link>
+                                        </div>
+                                        <div className="nav-item">
+                                            <Link className="nav-link" to="/register">Register</Link>
+                                        </div>
+                                    </>
+                            }
+                        </div>
                 
+                    </div>
+                </div>
             </div>
+           
         </>
     )
 }
