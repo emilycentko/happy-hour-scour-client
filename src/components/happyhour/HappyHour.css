@@ -20,6 +20,27 @@
     right:20px;
 }
 
-li {
-    list-style-type: none;
+.search__container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
 }
+
+.happy_hour__search {
+    margin-top: 25px;
+}
+
+.filters {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.locations {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 2;
+}
+
+
+

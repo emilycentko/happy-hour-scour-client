@@ -54,67 +54,75 @@ export const HappyHourList = () => {
                 Filter
             </Button>
             <Collapse in={open}>
-                <div id="filter-collapse">
-           
+                <div id="filter-collapse" className="filters">
 
-                <h5>Offerings</h5>
+                    <div className="filter__special_type">
+            
 
-                {
-                    specialtypes.map(specialtype => {
+                    <h5>Offerings</h5>
+
+                    {
+                        specialtypes.map(specialtype => {
+                        
+                        return <>
+                        <div key={specialtype.id}>
+                            <input type="checkbox" value={specialtype.id} id={specialtype.type}
+                            onChange={(event) => {
+                                event.target.checked === true
+                                ? getFilterSpecialType(weekday, event.target.value)
+                                : getHappyHours(weekday)}}
+                            /> {specialtype.type}
+                        </div>
+                        </>
+                        })
+                    }
+
+                    </div>
+                    <div className="filter__location">
+
+                    <h5>Location</h5>
+                    <div className="locations">
+                    {
+                        locations.map(location => {
+                        
+                        return <>
+                        <div key={location.id}>
+                            <input type="checkbox" value={location.id} id={location.name}
+                            onChange={(event) => {
+                                event.target.checked === true
+                                ? getFilterLocation(weekday, event.target.value)
+                                : getHappyHours(weekday)}}
+                            /> {location.name}
+                        </div>
+                        </>
+                        })
+                    }
+                    </div>
+                </div>
+                <div className="filter__features">
+
+                    <h5>Features</h5>
+
+                        <div key={true}>
+                            <input type="checkbox" value={true} id={true}
+                            onChange={(event) => {
+                                event.target.checked === true
+                                ? getFilterPatio(weekday, event.target.value)
+                                : getHappyHours(weekday)}}
+                            /> Patio
+                        </div>
                     
-                    return <>
-                    <div key={specialtype.id}>
-                        <input type="checkbox" value={specialtype.id} id={specialtype.type}
-                        onChange={(event) => {
-                            event.target.checked === true
-                            ? getFilterSpecialType(weekday, event.target.value)
-                            : getHappyHours(weekday)}}
-                        /> {specialtype.type}
+                        
+                        <div key={true}>
+                            <input type="checkbox" value={true} id={true}
+                            onChange={(event) => {
+                                event.target.checked === true
+                                ? getFilterTrivia(weekday, event.target.value)
+                                : getHappyHours(weekday)}}
+                            /> Trivia
+                        </div>
+
                     </div>
-                    </>
-                    })
-                }
-
-                <h5>Location</h5>
-
-                {
-                    locations.map(location => {
-                    
-                    return <>
-                    <div key={location.id}>
-                        <input type="checkbox" value={location.id} id={location.name}
-                        onChange={(event) => {
-                            event.target.checked === true
-                            ? getFilterLocation(weekday, event.target.value)
-                            : getHappyHours(weekday)}}
-                        /> {location.name}
-                    </div>
-                    </>
-                    })
-                }
-
-                <h5>Features</h5>
-
-                    <div key={true}>
-                        <input type="checkbox" value={true} id={true}
-                        onChange={(event) => {
-                            event.target.checked === true
-                            ? getFilterPatio(weekday, event.target.value)
-                            : getHappyHours(weekday)}}
-                        /> Patio
-                    </div>
-                
-                    
-                    <div key={true}>
-                        <input type="checkbox" value={true} id={true}
-                        onChange={(event) => {
-                            event.target.checked === true
-                            ? getFilterTrivia(weekday, event.target.value)
-                            : getHappyHours(weekday)}}
-                        /> Trivia
-                    </div>
-
-                
                 </div>
             </Collapse>
 
