@@ -6,7 +6,7 @@ import ReactStars from "react-rating-stars-component"
 
 
 export const ReviewForm = () => {
-    const { reviews, addReview, editReview, getReviewsByHappyHour } = useContext(ReviewContext)
+    const { addReview, getReviewsByHappyHour } = useContext(ReviewContext)
 
     const {happyhour} = useParams()
     console.log(happyhour)
@@ -31,32 +31,10 @@ export const ReviewForm = () => {
         setReview(newReview)
     }
 
-    const handleSubmit = () => {
-
-        if (review.id){
-            editReview({
-                id: review.id,
-                rating: review.rating,
-                review: review.review,
-                happyHourId: review.happyHourId
-            })
-            .then(getReviewsByHappyHour(happyhour))
-        } else {
-            
-            addReview({
-                rating: review.rating,
-                review: review.review,
-                happyHourId: review.happyHourId,
-                customerId: review.customerId
-            })
-            .then(getReviewsByHappyHour(happyhour))
-        }
-    }
-
     return (
         <form className="reviewForm">
             
-            <h2 className="reviewForm__review">{review.id ? "Edit Review" : "New Review"}</h2>
+            <h2 className="reviewForm__review">New Review</h2>
             <fieldset>
                 <ReactStars
                     count={5}
@@ -87,9 +65,15 @@ export const ReviewForm = () => {
                 onClick={evt => {
                     
                     evt.preventDefault()
-                    handleSubmit()
+                    addReview({
+                        rating: review.rating,
+                        review: review.review,
+                        happyHourId: review.happyHourId,
+                        customerId: review.customerId
+                    })
+                    .then(() => {getReviewsByHappyHour(happyhour)})
                 }}>
-                {review.id ? "Save" : "Add Review"}
+                Add Review
                 </button>
         </form>
     )

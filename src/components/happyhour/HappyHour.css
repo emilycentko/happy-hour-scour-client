@@ -40,12 +40,12 @@ h1 {
     justify-content: space-evenly;
 }
 
-.locations {
+/* .locations {
     display: flex;
     flex-direction: column;
     flex-basis: 100%;
     flex: 2;
-}
+} */
 
 
 

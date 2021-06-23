@@ -47,12 +47,18 @@ export const HappyHourProvider = (props) => {
             .then(setHappyHours)
     }
 
-    const getFilterSpecialType = (weekday=null, typeId) => {
+    const getFilteredHappyHours = (weekday=null, typeId=null, locationId=null) => {
         let fetchURL = ""
-        if (weekday != null) {
-            fetchURL = `http://localhost:8000/happyhours?day=${weekday}&special_type=${typeId}`
+        if (weekday != null && typeId !=null && locationId !=null) {
+            fetchURL = `http://localhost:8000/happyhours?day=${weekday}&special_type=${typeId}&location=${locationId}&trivia=true&patio=true`
+        } else if (locationId !=null && typeId !=null) {
+            fetchURL = `http://localhost:8000/happyhours?location=${locationId}&special_type=${typeId}`
+        } else if (weekday !=null && locationId !=null) {
+            fetchURL = `http://localhost:8000/happyhours?day=${weekday}&location=${locationId}`
+        } else if (weekday !=null && typeId !=null) {
+            fetchURL = `http://localhost:8000/happyhours?day=${weekday}&location=${locationId}`
         } else {
-            fetchURL = `http://localhost:8000/happyhours?special_type=${typeId}`
+            fetchURL = `http://localhost:8000/happyhours?special_type=${typeId}&location=${locationId}&trivia=true&patio=true`
         }
         return fetch(fetchURL, {
             headers:{
@@ -137,8 +143,8 @@ export const HappyHourProvider = (props) => {
     }
 
     return (
-        <HappyHourContext.Provider value={{ happyhours, searchTerms, getHappyHours, getHappyHourById,
-            getHappyHourSearch, getFilterSpecialType, getFilterLocation, getFilterPatio, getFilterTrivia,
+        <HappyHourContext.Provider value={{ happyhours, searchTerms, getFilteredHappyHours, getHappyHours, getHappyHourById,
+            getHappyHourSearch, getFilterLocation, getFilterPatio, getFilterTrivia,
             setTerms, addFavorite, removeFavorite }}>
             {props.children}
         </HappyHourContext.Provider>

@@ -12,10 +12,11 @@ import "./HappyHour.css"
 
 export const HappyHourList = () => {
 
-    const {happyhours, getHappyHours, searchTerms, getHappyHourSearch, getFilterSpecialType, getFilterLocation, getFilterPatio, getFilterTrivia} = useContext(HappyHourContext)
+    const {happyhours, getHappyHours, searchTerms, getHappyHourSearch, getFilteredHappyHours, getFilterSpecialType, getFilterLocation, getFilterPatio, getFilterTrivia} = useContext(HappyHourContext)
     const {specialtypes, getSpecialTypes} = useContext(SpecialTypeContext)
     const {locations, getLocations} = useContext(LocationContext)
     const [open, setOpen] = useState(false)
+    const [filteredHappyHours, setFilteredHappyHours] = useState([])
     
 
     // useLocation to grab the param 'weekday' from url and set = day property, split on = to grab that day
@@ -68,9 +69,9 @@ export const HappyHourList = () => {
                         <div key={specialtype.id}>
                             <input type="checkbox" value={specialtype.id} id={specialtype.type}
                             onChange={(event) => {
-                                event.target.checked === true
-                                ? getFilterSpecialType(weekday, event.target.value)
-                                : getHappyHours(weekday)}}
+                                if (event.target.checked === true) {
+                                    setFilteredHappyHours(event.target.checked)
+                                }}}
                             /> {specialtype.type}
                         </div>
                         </>
@@ -89,9 +90,10 @@ export const HappyHourList = () => {
                         <div key={location.id}>
                             <input type="checkbox" value={location.id} id={location.name}
                             onChange={(event) => {
-                                event.target.checked === true
-                                ? getFilterLocation(weekday, event.target.value)
-                                : getHappyHours(weekday)}}
+                               
+                                if (event.target.checked === true) {
+                                    setFilteredHappyHours(event.target.checked)
+                                }}}
                             /> {location.name}
                         </div>
                         </>
@@ -106,9 +108,10 @@ export const HappyHourList = () => {
                         <div key={true}>
                             <input type="checkbox" value={true} id={true}
                             onChange={(event) => {
-                                event.target.checked === true
-                                ? getFilterPatio(weekday, event.target.value)
-                                : getHappyHours(weekday)}}
+                                
+                                if (event.target.checked === true) {
+                                    setFilteredHappyHours(event.target.checked)
+                                }}}
                             /> Patio
                         </div>
                     
@@ -116,13 +119,20 @@ export const HappyHourList = () => {
                         <div key={true}>
                             <input type="checkbox" value={true} id={true}
                             onChange={(event) => {
-                                event.target.checked === true
-                                ? getFilterTrivia(weekday, event.target.value)
-                                : getHappyHours(weekday)}}
+                               
+                                if (event.target.checked === true) {
+                                    setFilteredHappyHours(event.target.checked)
+                                }}}
                             /> Trivia
                         </div>
 
                     </div>
+                <div>
+                    <Button
+                        onClick={(event) => {getFilteredHappyHours(weekday, [event.target.value])}}>
+                        Submit
+                    </Button>
+                </div>
                 </div>
             </Collapse>
 
