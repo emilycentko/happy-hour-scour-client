@@ -19,3 +19,7 @@
     bottom:12px;
     right:20px;
 }
+
+li {
+    list-style-type: none;
+}
