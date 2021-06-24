@@ -3,6 +3,7 @@ import { HappyHourContext } from "../happyhour/HappyHourProvider.js"
 import { ReviewContext } from './ReviewProvider'
 import { useParams } from 'react-router-dom'
 import ReactStars from "react-rating-stars-component"
+import Button from 'react-bootstrap/Button'
 
 
 export const ReviewForm = () => {
@@ -60,7 +61,7 @@ export const ReviewForm = () => {
             </fieldset>
 
             
-            <button type="submit"
+            <Button type="submit"
                 
                 onClick={evt => {
                     
@@ -74,7 +75,7 @@ export const ReviewForm = () => {
                     .then(() => {getReviewsByHappyHour(happyhour)})
                 }}>
                 Add Review
-                </button>
+                </Button>
         </form>
     )
 }

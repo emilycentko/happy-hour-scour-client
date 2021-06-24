@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from "react"
 import { ReviewContext } from "./ReviewProvider.js"
 import { HappyHourContext } from "../happyhour/HappyHourProvider.js"
 import { useParams } from 'react-router-dom'
-import ReactStars from "react-rating-stars-component";
+import ReactStars from "react-rating-stars-component"
+import Button from 'react-bootstrap/Button'
 
 export const Review = ({review}) => {
     const { deleteReview, getReviewById, getReviewsByHappyHour } = useContext(ReviewContext)
@@ -30,10 +31,10 @@ export const Review = ({review}) => {
                 </div>
                     <div className="user__review">{review.review}</div>
                         
-                    <button onClick={() => {
+                    <Button onClick={() => {
                         deleteReview(review.id)
                         .then(() => {getReviewsByHappyHour(happyhour)})}}>Delete
-                    </button>
+                    </Button>
                            
             </section>
                     
