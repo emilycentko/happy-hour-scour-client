@@ -20,8 +20,11 @@ h1 {
 
 .happyhour__heart {
     position:absolute;
-    bottom:12px;
+    width: 40px;
     right:20px;
+    background: none!important;
+    border: none;
+    cursor: pointer;
 }
 
 .search__container {

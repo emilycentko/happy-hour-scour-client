@@ -30,10 +30,6 @@ export const Review = ({review}) => {
                 </div>
                     <div className="user__review">{review.review}</div>
                         
-                    <button className="edit__review_button"
-                        onClick={() => {getReviewById(review.id)}}
-                            >Edit Review
-                    </button>
                     <button onClick={() => {
                         deleteReview(review.id)
                         .then(() => {getReviewsByHappyHour(happyhour)})}}>Delete

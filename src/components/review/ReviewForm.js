@@ -31,28 +31,6 @@ export const ReviewForm = () => {
         setReview(newReview)
     }
 
-    const handleSubmit = () => {
-
-        if (review.id){
-            editReview({
-                id: review.id,
-                rating: review.rating,
-                review: review.review,
-                happyHourId: review.happyHourId
-            })
-            .then(getReviewsByHappyHour(happyhour))
-        } else {
-            
-            addReview({
-                rating: review.rating,
-                review: review.review,
-                happyHourId: review.happyHourId,
-                customerId: review.customerId
-            })
-            .then(getReviewsByHappyHour(happyhour))
-        }
-    }
-
     return (
         <form className="reviewForm">
             
@@ -87,9 +65,15 @@ export const ReviewForm = () => {
                 onClick={evt => {
                     
                     evt.preventDefault()
-                    handleSubmit()
+                    addReview({
+                        rating: review.rating,
+                        review: review.review,
+                        happyHourId: review.happyHourId,
+                        customerId: review.customerId
+                    })
+                    .then(() => {getReviewsByHappyHour(happyhour)})
                 }}>
-                {review.id ? "Save" : "Add Review"}
+                Add Review
                 </button>
         </form>
     )

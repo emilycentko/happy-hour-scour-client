@@ -7,6 +7,7 @@ import { IoFastFoodSharp } from 'react-icons/io5'
 import { FaWineGlassAlt } from 'react-icons/fa'
 import { IoBeerSharp } from 'react-icons/io5'
 import { GiMartini} from "react-icons/gi"
+import { FcDislike } from "react-icons/fc"
 
 export const FavoriteCard = ({favorite}) => {
 
@@ -26,7 +27,10 @@ export const FavoriteCard = ({favorite}) => {
             <Card.Body>
                 <Card.Title className="happyhour__business">{favorite.happy_hour.business.name}</Card.Title>
                     <Card.Text>
-                        <div>{favorite.happy_hour.start_time} p.m. - {favorite.happy_hour.end_time} p.m.</div>           
+                        <hr></hr>
+                        <div>{favorite.happy_hour.weekday.day}s</div>          
+                        <div>{favorite.happy_hour.start_time} - {favorite.happy_hour.end_time}</div> 
+                        <hr></hr>
                         
                         <div className="happyhour__description">
                             {favorite.happy_hour.wine !== null ?
@@ -49,7 +53,7 @@ export const FavoriteCard = ({favorite}) => {
                             removeFavorite(favorite.happy_hour.id)
                             .then(() => getFavorites())}
                             >
-                            Remove
+                            <FcDislike />
                     </button>
                     
             </Card.Footer>
