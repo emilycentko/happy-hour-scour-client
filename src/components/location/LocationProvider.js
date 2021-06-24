@@ -6,7 +6,7 @@ export const LocationProvider = (props) => {
   const [locations, setLocations] = useState([]);
 
   const getLocations = () => {
-    return fetch("http://localhost:8000/locations", {
+    return fetch("https://happy-hour-scour.herokuapp.com/locations", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("hhs_token")}`,
             "Content-Type": "application/json"

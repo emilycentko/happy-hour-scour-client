@@ -6,7 +6,7 @@ export const SpecialTypeProvider = (props) => {
   const [specialtypes, setSpecialTypes] = useState([]);
 
   const getSpecialTypes = () => {
-    return fetch("http://localhost:8000/specialtypes", {
+    return fetch("https://happy-hour-scour.herokuapp.com/specialtypes", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("hhs_token")}`,
             "Content-Type": "application/json"

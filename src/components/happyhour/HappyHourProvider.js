@@ -10,9 +10,9 @@ export const HappyHourProvider = (props) => {
     const getHappyHours = (weekday=null) => {
         let fetchURL = ""
         if (weekday != null) {
-            fetchURL = `http://localhost:8000/happyhours?day=${weekday}`
+            fetchURL = `https://happy-hour-scour.herokuapp.com/happyhours?day=${weekday}`
         } else {
-            fetchURL = `http://localhost:8000/happyhours`
+            fetchURL = `https://happy-hour-scour.herokuapp.com/happyhours`
         }
         return fetch(fetchURL, {
             headers:{
@@ -24,7 +24,7 @@ export const HappyHourProvider = (props) => {
     }
 
     const getHappyHourById = (id) => {
-        return fetch(`http://localhost:8000/happyhours/${id}`, {
+        return fetch(`https://happy-hour-scour.herokuapp.com/happyhours/${id}`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("hhs_token")}`,
         }})
@@ -34,9 +34,9 @@ export const HappyHourProvider = (props) => {
     const getHappyHourSearch = (weekday=null, searchTerms) => {
         let fetchURL = ""
         if (weekday != null) {
-            fetchURL = `http://localhost:8000/happyhours?day=${weekday}&searchTerms=${searchTerms}`
+            fetchURL = `https://happy-hour-scour.herokuapp.com/happyhours?day=${weekday}&searchTerms=${searchTerms}`
         } else {
-            fetchURL = `http://localhost:8000/happyhours?searchTerms=${searchTerms}`
+            fetchURL = `https://happy-hour-scour.herokuapp.com/happyhours?searchTerms=${searchTerms}`
         }
         return fetch(fetchURL, {
             headers:{
@@ -50,9 +50,9 @@ export const HappyHourProvider = (props) => {
     const getFilterSpecialType = (weekday=null, typeId) => {
         let fetchURL = ""
         if (weekday != null) {
-            fetchURL = `http://localhost:8000/happyhours?day=${weekday}&special_type=${typeId}`
+            fetchURL = `https://happy-hour-scour.herokuapp.com/happyhours?day=${weekday}&special_type=${typeId}`
         } else {
-            fetchURL = `http://localhost:8000/happyhours?special_type=${typeId}`
+            fetchURL = `https://happy-hour-scour.herokuapp.com/happyhours?special_type=${typeId}`
         }
         return fetch(fetchURL, {
             headers:{
@@ -66,9 +66,9 @@ export const HappyHourProvider = (props) => {
     const getFilterLocation = (weekday=null, locationId) => {
         let fetchURL = ""
         if (weekday != null) {
-            fetchURL = `http://localhost:8000/happyhours?day=${weekday}&location=${locationId}`
+            fetchURL = `https://happy-hour-scour.herokuapp.com/happyhours?day=${weekday}&location=${locationId}`
         } else {
-            fetchURL = `http://localhost:8000/happyhours?location=${locationId}`
+            fetchURL = `https://happy-hour-scour.herokuapp.com/happyhours?location=${locationId}`
         }
         return fetch(fetchURL, {
             headers:{
@@ -82,9 +82,9 @@ export const HappyHourProvider = (props) => {
     const getFilterPatio = (weekday=null) => {
         let fetchURL = ""
         if (weekday != null) {
-            fetchURL = `http://localhost:8000/happyhours?day=${weekday}&patio=true`
+            fetchURL = `https://happy-hour-scour.herokuapp.com/happyhours?day=${weekday}&patio=true`
         } else {
-            fetchURL = `http://localhost:8000/happyhours?patio=true`
+            fetchURL = `https://happy-hour-scour.herokuapp.com/happyhours?patio=true`
         }
         return fetch(fetchURL, {
             headers:{
@@ -98,9 +98,9 @@ export const HappyHourProvider = (props) => {
     const getFilterTrivia = (weekday=null) => {
         let fetchURL = ""
         if (weekday != null) {
-            fetchURL = `http://localhost:8000/happyhours?day=${weekday}&trivia=true`
+            fetchURL = `https://happy-hour-scour.herokuapp.com/happyhours?day=${weekday}&trivia=true`
         } else {
-            fetchURL = `http://localhost:8000/happyhours?trivia=true`
+            fetchURL = `https://happy-hour-scour.herokuapp.com/happyhours?trivia=true`
         }
         return fetch(fetchURL, {
             headers:{
@@ -113,7 +113,7 @@ export const HappyHourProvider = (props) => {
 
     const addFavorite = (favorite) => {
         
-        return fetch("http://localhost:8000/favorites", {
+        return fetch("https://happy-hour-scour.herokuapp.com/favorites", {
             method: "POST",    
             headers:{
                 "Authorization": `Token ${localStorage.getItem("hhs_token")}`,
@@ -127,7 +127,7 @@ export const HappyHourProvider = (props) => {
     }
 
     const removeFavorite = happyhourId => {
-        return fetch(`http://localhost:8000/favorites/${happyhourId}`, {
+        return fetch(`https://happy-hour-scour.herokuapp.com/favorites/${happyhourId}`, {
             method: "DELETE",
             headers:{
                 "Authorization": `Token ${localStorage.getItem("hhs_token")}`

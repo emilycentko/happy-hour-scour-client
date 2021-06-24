@@ -6,7 +6,7 @@ export const ReviewProvider = props => {
     const [ reviews, setReviews ] = useState([])
 
     const getReviews = () => {
-        return fetch(`http://localhost:8000/reviews`, {
+        return fetch(`https://happy-hour-scour.herokuapp.com/reviews`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("hhs_token")}`
             }
@@ -17,7 +17,7 @@ export const ReviewProvider = props => {
 
     const getReviewsByHappyHour = (happyHourId) => {
         console.log(happyHourId)
-        return fetch(`http://localhost:8000/reviews?happyhour=${happyHourId}`, {
+        return fetch(`https://happy-hour-scour.herokuapp.com/reviews?happyhour=${happyHourId}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("hhs_token")}`
             }
@@ -27,7 +27,7 @@ export const ReviewProvider = props => {
     }
 
     const getReviewById = (id) => {
-        return fetch(`http://localhost:8000/reviews/${id}`, {
+        return fetch(`https://happy-hour-scour.herokuapp.com/reviews/${id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("hhs_token")}`
             }
@@ -37,7 +37,7 @@ export const ReviewProvider = props => {
 
 
     const addReview = review => {
-        return fetch(`http://localhost:8000/reviews`, {
+        return fetch(`https://happy-hour-scour.herokuapp.com/reviews`, {
             method: "POST",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("hhs_token")}`,
@@ -49,7 +49,7 @@ export const ReviewProvider = props => {
     }
 
     const editReview = review => {
-        return fetch(`http://localhost:8000/reviews/${review.id}`, { 
+        return fetch(`https://happy-hour-scour.herokuapp.com/reviews/${review.id}`, { 
             method: "PUT",
             headers:{
                 "Authorization": `Token ${localStorage.getItem("hhs_token")}`,
@@ -61,7 +61,7 @@ export const ReviewProvider = props => {
     }
 
     const deleteReview = (reviewId) => {
-        return fetch(`http://localhost:8000/reviews/${reviewId}`,{
+        return fetch(`https://happy-hour-scour.herokuapp.com/reviews/${reviewId}`,{
             method:"DELETE",
             headers:{
                 "Authorization": `Token ${localStorage.getItem("hhs_token")}`

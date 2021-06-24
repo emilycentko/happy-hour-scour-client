@@ -7,7 +7,7 @@ export const ProfileProvider = (props) => {
     const [profile, setProfile] = useState({})
 
     const getProfile = () => {
-        return fetch("http://localhost:8000/profile", {
+        return fetch("https://happy-hour-scour.herokuapp.com/profile", {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("hhs_token")}`
             }

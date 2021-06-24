@@ -7,7 +7,7 @@ export const FavoriteProvider = (props) => {
     const [favorites, setFavorites] = useState([])
 
     const getFavorites = () => {
-        return fetch("http://localhost:8000/favorites", {
+        return fetch("https://happy-hour-scour.herokuapp.com/favorites", {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("hhs_token")}`
             }
