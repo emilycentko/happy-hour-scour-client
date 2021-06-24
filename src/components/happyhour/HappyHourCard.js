@@ -67,7 +67,7 @@ export const HappyHourCard = ({happyhour}) => {
                             removeFavorite(happyhour.id)
                             .then(() => getHappyHours(weekday))}
                             >
-                            <AiOutlineHeart />
+                            <FcLike size={30}/>
                         </button>
                     : <button className="happyhour__heart" 
                         
@@ -75,7 +75,7 @@ export const HappyHourCard = ({happyhour}) => {
                             addFavorite(happyhour.id)
                             .then(() => getHappyHours(weekday))}
                             >
-                            <FcLike />
+                            <AiOutlineHeart size={30} />
                     </button>
                     }
                     
