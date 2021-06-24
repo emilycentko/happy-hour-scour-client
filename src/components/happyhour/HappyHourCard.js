@@ -9,6 +9,8 @@ import { IoFastFoodSharp } from 'react-icons/io5'
 import { FaWineGlassAlt } from 'react-icons/fa'
 import { IoBeerSharp } from 'react-icons/io5'
 import { GiMartini} from "react-icons/gi"
+import { FcLike } from "react-icons/fc"
+import { AiOutlineHeart } from "react-icons/ai"
 
 export const HappyHourCard = ({happyhour}) => {
 
@@ -34,8 +36,9 @@ export const HappyHourCard = ({happyhour}) => {
             <Card.Body>
                 <Card.Title className="happyhour__business">{happyhour.business.name}</Card.Title>
                     <Card.Text>
+                        <hr></hr>
                         <div>
-                            {happyhour.start_time} p.m. - {happyhour.end_time} p.m.
+                            {happyhour.start_time} - {happyhour.end_time}
                         </div>
                         
                         <div className="happyhour__description">
@@ -64,14 +67,15 @@ export const HappyHourCard = ({happyhour}) => {
                             removeFavorite(happyhour.id)
                             .then(() => getHappyHours(weekday))}
                             >
-                            Remove
+                            <AiOutlineHeart />
                         </button>
                     : <button className="happyhour__heart" 
+                        
                         onClick={() => 
                             addFavorite(happyhour.id)
                             .then(() => getHappyHours(weekday))}
                             >
-                            Add
+                            <FcLike />
                     </button>
                     }
                     
