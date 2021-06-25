@@ -10,7 +10,6 @@ export const ReviewForm = () => {
     const { reviews, addReview, editReview, getReviewsByHappyHour } = useContext(ReviewContext)
 
     const {happyhour} = useParams()
-    console.log(happyhour)
     
     
     const [review, setReview] = useState({

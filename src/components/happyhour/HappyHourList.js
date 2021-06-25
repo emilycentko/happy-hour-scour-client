@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Collapse from 'react-bootstrap/Collapse'
 import Button from 'react-bootstrap/Button'
+import { IoOptionsOutline } from "react-icons/io5"
 import "./HappyHour.css"
 
 export const HappyHourList = () => {
@@ -47,11 +48,12 @@ export const HappyHourList = () => {
       return (
           <>
             <Button
+                className="filter__button"
                 onClick={() => setOpen(!open)}
                 aria-controls="filter-collapse"
                 aria-expanded={open}
             >
-                Filter
+                <IoOptionsOutline size={30} />
             </Button>
             <Collapse in={open}>
                 <div id="filter-collapse" className="filters">

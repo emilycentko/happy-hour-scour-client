@@ -1,5 +1,5 @@
 import React, { useState, createContext } from "react"
-import { apiSettings } from '../Settings'
+import { apiSettings, apiHeaders } from '../Settings'
 
 export const SpecialTypeContext = createContext()
 
@@ -8,10 +8,7 @@ export const SpecialTypeProvider = (props) => {
 
   const getSpecialTypes = () => {
     return fetch(`${apiSettings.baseUrl}/specialtypes`, {
-        headers:{
-            "Authorization": `Token ${localStorage.getItem("hhs_token")}`,
-            "Content-Type": "application/json"
-        }
+      headers: apiHeaders()
     })
       .then(response => response.json())
       .then(setSpecialTypes)

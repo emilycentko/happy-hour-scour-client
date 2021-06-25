@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { apiSettings } from '../Settings'
+import { apiSettings, apiHeaders } from '../Settings'
 import "./Auth.css"
 
 export const Register = (props) => {
@@ -27,10 +27,7 @@ export const Register = (props) => {
 
             return fetch(`${apiSettings.baseUrl}/register`, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
+                headers: apiHeaders(),
                 body: JSON.stringify(newUser)
             })
                 .then(res => res.json())

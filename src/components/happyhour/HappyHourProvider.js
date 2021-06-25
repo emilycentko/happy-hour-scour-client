@@ -1,5 +1,5 @@
 import React, { useState, createContext } from "react"
-import { apiSettings } from '../Settings'
+import { apiSettings, apiHeaders } from '../Settings'
 
 export const HappyHourContext = createContext()
 
@@ -16,9 +16,7 @@ export const HappyHourProvider = (props) => {
             fetchURL = `${apiSettings.baseUrl}/happyhours`
         }
         return fetch(fetchURL, {
-            headers:{
-                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
-            }
+            headers: apiHeaders()
         })
             .then(response => response.json())
             .then(setHappyHours)
@@ -26,9 +24,8 @@ export const HappyHourProvider = (props) => {
 
     const getHappyHourById = (id) => {
         return fetch(`${apiSettings.baseUrl}/happyhours/${id}`, {
-        headers:{
-            "Authorization": `Token ${localStorage.getItem("hhs_token")}`,
-        }})
+            headers: apiHeaders()
+        })
             .then(response => response.json())
     }
 
@@ -40,9 +37,7 @@ export const HappyHourProvider = (props) => {
             fetchURL = `${apiSettings.baseUrl}/happyhours?searchTerms=${searchTerms}`
         }
         return fetch(fetchURL, {
-            headers:{
-                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
-            }
+            headers: apiHeaders()
         })
             .then(response => response.json())
             .then(setHappyHours)
@@ -56,9 +51,7 @@ export const HappyHourProvider = (props) => {
             fetchURL = `${apiSettings.baseUrl}/happyhours?special_type=${typeId}`
         }
         return fetch(fetchURL, {
-            headers:{
-                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
-            }
+            headers: apiHeaders()
         })
             .then(response => response.json())
             .then(setHappyHours)
@@ -72,9 +65,7 @@ export const HappyHourProvider = (props) => {
             fetchURL = `${apiSettings.baseUrl}/happyhours?location=${locationId}`
         }
         return fetch(fetchURL, {
-            headers:{
-                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
-            }
+            headers: apiHeaders()
         })
             .then(response => response.json())
             .then(setHappyHours)
@@ -88,9 +79,7 @@ export const HappyHourProvider = (props) => {
             fetchURL = `${apiSettings.baseUrl}/happyhours?patio=true`
         }
         return fetch(fetchURL, {
-            headers:{
-                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
-            }
+            headers: apiHeaders()
         })
             .then(response => response.json())
             .then(setHappyHours)
@@ -104,9 +93,7 @@ export const HappyHourProvider = (props) => {
             fetchURL = `${apiSettings.baseUrl}/happyhours?trivia=true`
         }
         return fetch(fetchURL, {
-            headers:{
-                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
-            }
+            headers: apiHeaders()
         })
             .then(response => response.json())
             .then(setHappyHours)
@@ -116,10 +103,7 @@ export const HappyHourProvider = (props) => {
         
         return fetch(`${apiSettings.baseUrl}/favorites`, {
             method: "POST",    
-            headers:{
-                "Authorization": `Token ${localStorage.getItem("hhs_token")}`,
-                "Content-Type": "application/json"
-            },
+            headers: apiHeaders(),
             body: JSON.stringify({
                 "happy_hour": favorite
             })
@@ -130,9 +114,7 @@ export const HappyHourProvider = (props) => {
     const removeFavorite = happyhourId => {
         return fetch(`${apiSettings.baseUrl}/favorites/${happyhourId}`, {
             method: "DELETE",
-            headers:{
-                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
-            }
+            headers: apiHeaders()
         })
             
     }

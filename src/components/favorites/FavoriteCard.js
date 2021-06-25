@@ -53,7 +53,7 @@ export const FavoriteCard = ({favorite}) => {
                             removeFavorite(favorite.happy_hour.id)
                             .then(() => getFavorites())}
                             >
-                            <FcDislike />
+                            <FcDislike size={30} />
                     </button>
                     
             </Card.Footer>

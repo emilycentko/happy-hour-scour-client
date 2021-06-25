@@ -1,5 +1,5 @@
 import React, { useState, createContext } from "react"
-import { apiSettings } from '../Settings'
+import { apiSettings, apiHeaders } from '../Settings'
 
 export const FavoriteContext = createContext()
 
@@ -9,9 +9,7 @@ export const FavoriteProvider = (props) => {
 
     const getFavorites = () => {
         return fetch(`${apiSettings.baseUrl}/favorites`, {
-            headers:{
-                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
-            }
+            headers: apiHeaders()
         })
             .then(response => response.json())
             .then(setFavorites)

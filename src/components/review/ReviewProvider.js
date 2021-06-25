@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react'
-import { apiSettings } from '../Settings'
+import { apiSettings, apiHeaders } from '../Settings'
 
 export const ReviewContext = createContext()
 
@@ -8,9 +8,7 @@ export const ReviewProvider = props => {
 
     const getReviews = () => {
         return fetch(`${apiSettings.baseUrl}/reviews`, {
-            headers: {
-                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
-            }
+            headers: apiHeaders()
         })
             .then(response => response.json())
             .then(setReviews)
@@ -19,9 +17,7 @@ export const ReviewProvider = props => {
     const getReviewsByHappyHour = (happyHourId) => {
         console.log(happyHourId)
         return fetch(`${apiSettings.baseUrl}/reviews?happyhour=${happyHourId}`, {
-            headers: {
-                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
-            }
+            headers: apiHeaders()
         })
         .then(response => response.json())
         .then(setReviews)
@@ -29,9 +25,7 @@ export const ReviewProvider = props => {
 
     const getReviewById = (id) => {
         return fetch(`${apiSettings.baseUrl}/reviews/${id}`, {
-            headers: {
-                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
-            }
+            headers: apiHeaders()
         })
             .then(response => response.json())
     }
@@ -40,10 +34,7 @@ export const ReviewProvider = props => {
     const addReview = review => {
         return fetch(`${apiSettings.baseUrl}/reviews`, {
             method: "POST",
-            headers: {
-                "Authorization": `Token ${localStorage.getItem("hhs_token")}`,
-                "Content-Type": "application/json"
-            },
+            headers: apiHeaders(),
             body: JSON.stringify(review)
         })
         
@@ -52,16 +43,14 @@ export const ReviewProvider = props => {
     const deleteReview = (reviewId) => {
         return fetch(`${apiSettings.baseUrl}/reviews/${reviewId}`,{
             method:"DELETE",
-            headers:{
-                "Authorization": `Token ${localStorage.getItem("hhs_token")}`
-            }
+            headers: apiHeaders()
         })
        
     }
 
     return (
         <ReviewContext.Provider value={{
-            reviews, getReviews, getReviewById, addReview, getReviewsByHappyHour, editReview, deleteReview
+            reviews, getReviews, getReviewById, addReview, getReviewsByHappyHour, deleteReview
         }}>
             {props.children}
         </ReviewContext.Provider>
