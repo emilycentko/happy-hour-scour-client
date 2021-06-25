@@ -1,4 +1,5 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext } from "react"
+import { apiSettings } from '../Settings'
 
 export const LocationContext = createContext()
 
@@ -6,7 +7,7 @@ export const LocationProvider = (props) => {
   const [locations, setLocations] = useState([]);
 
   const getLocations = () => {
-    return fetch("https://happy-hour-scour.herokuapp.com/locations", {
+    return fetch(`${apiSettings.baseUrl}/locations`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("hhs_token")}`,
             "Content-Type": "application/json"

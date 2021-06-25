@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { apiSettings } from '../Settings'
 
 export const ProfileContext = React.createContext()
 
@@ -7,7 +8,7 @@ export const ProfileProvider = (props) => {
     const [profile, setProfile] = useState({})
 
     const getProfile = () => {
-        return fetch("https://happy-hour-scour.herokuapp.com/profile", {
+        return fetch(`${apiSettings.baseUrl}/profile`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("hhs_token")}`
             }

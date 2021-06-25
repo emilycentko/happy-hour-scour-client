@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { apiSettings } from '../Settings'
 import "./Auth.css"
 
 export const Login = props => {
@@ -10,7 +11,7 @@ export const Login = props => {
     const handleLogin = (e) => {
         e.preventDefault()
 
-        return fetch("https://happy-hour-scour.herokuapp.com/login", {
+        return fetch(`${apiSettings.baseUrl}/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
