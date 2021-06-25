@@ -37,7 +37,6 @@ export const HappyHourList = () => {
         getHappyHourSearch(weekday, searchTerms)
     }, [weekday, searchTerms])
 
-
     // Return collapsed filter options + happy hour list for today by default or weekday if not null in params.
     // Filter options map over special types and locations to see all options and grab that value and id to render
     // all matching results, taking in weekday (if not null) and the value as arguments, if checked. Then getHappyHours to

@@ -8,5 +8,5 @@ export const apiHeaders = () => {
 }
 
 export const apiSettings = {
-    baseUrl: "https://happy-hour-scour.herokuapp.com"
+    baseUrl: "http://localhost:8000"
 }
