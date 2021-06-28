@@ -40,10 +40,10 @@ export const Login = props => {
                 <div>Email or password was not valid.</div>
                 <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>
             </dialog>
-            <section>
+            <section className="login-form">
                 <form className="form--login" onSubmit={handleLogin}>
                     <h1>Happy Hour Scour</h1>
-                    <h2>Please sign in</h2>
+                    <h2>Sign in</h2>
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>
                         <input ref={email} type="email" id="email" className="form-control"  placeholder="Email address" required autoFocus />
@@ -59,9 +59,13 @@ export const Login = props => {
                     </fieldset>
                 </form>
             </section>
-            <section className="link--register">
-                <Link to="/register">Not a member yet?</Link>
-            </section>
+            <hr></hr>
+            <div className="register">
+                <h2>I'm new here</h2>
+                <section className="link--register">
+                    <Link to="/register"className="register-link">Create an account</Link>
+                </section>
+            </div>
         </main>
     )
 }

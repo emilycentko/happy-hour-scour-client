@@ -12,6 +12,7 @@ import { SpecialTypeProvider } from "./specialtype/SpecialTypeProvider"
 import { LocationProvider } from "./location/LocationProvider"
 import { ReviewProvider } from "./review/ReviewProvider"
 import { ReviewList } from "./review/ReviewList"
+import { Home } from "./Home"
 
 
 export const ApplicationViews = () => {
@@ -25,6 +26,9 @@ export const ApplicationViews = () => {
                 <LocationProvider>
                 <FavoriteProvider>
                 <ReviewProvider>
+                    <Route exact path="/">
+                        <Home />
+                    </Route>
                     <Route path="/happyhours">
                         <WeekDayTabs />
                         <HappyHourSearch />

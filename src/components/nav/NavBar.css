@@ -23,20 +23,10 @@
     margin-top: -2rem;
 }
 
-/* .logo {
-    display: flex;
-} */
-
 .navbar__link {
     font-family: 'Helvetica Neue';
     
 }
-
-/* .navigation__links {
-    display: flex;
-    flex: wrap;
-    flex-direction: flex-end
-} */
 
 .home__link {
     margin-top: 30px;
@@ -57,14 +47,12 @@
 .right__navigation {
     display: flex;
     flex: nowrap;
-    /* justify-content: flex-end; */
     align-items: right;
 }
 
 .left__navigation {
     display: flex;
     flex: nowrap;
-    /* justify-content: flex-start; */
     align-items: left;
 }
 
