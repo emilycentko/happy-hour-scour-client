@@ -16,7 +16,8 @@ Nashville is known for its hospitality and local food scene, and I love playing 
 1. Clone this repository and change to the directory in the terminal.
 2. In the project directory, you can run `npm start`
 3. Runs the app in the development mode.
-4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+4. Change base URL in Settings.js to "http://localhost:3000"
+5. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## ERD & Wireframe
 
@@ -27,3 +28,7 @@ Feel free to reference the [Happy Hour Scour database diagram](https://dbdiagram
 ## Server-side Repository
 
 Server-side repository and instructions to access can be found [here](https://github.com/emilycentko/happy-hour-scour-server).
+
+## Deployment
+
+Deployed using Heroku and Netlify [here] (https://happy-hour-scour.netlify.app/happyhours).
