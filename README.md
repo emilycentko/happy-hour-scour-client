@@ -16,8 +16,8 @@ Nashville is known for its hospitality and local food scene, and I love playing 
 1. Clone this repository and change to the directory in the terminal.
 2. In the project directory, you can run `npm start`
 3. Runs the app in the development mode.
-4. Change base URL in Settings.js to "http://localhost:3000"
-5. Open [http://localhost:3000](http://localhost:8000) to view it in the browser.
+4. Change base URL in Settings.js to "http://localhost:8000"
+5. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## ERD & Wireframe
 
